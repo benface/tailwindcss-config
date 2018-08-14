@@ -1,0 +1,29 @@
+{
+  "name": "tailwindcss-config",
+  "version": "1.0.0",
+  "description": "Tailwind CSS config generator",
+  "author": "Benoît Rouleau <benoit.rouleau@icloud.com>",
+  "license": "ISC",
+  "repository": "https://github.com/benface/tailwindcss-config.git",
+  "bugs": "https://github.com/benface/tailwindcss-config/issues",
+  "homepage": "https://github.com/benface/tailwindcss-config",
+  "scripts": {
+    "test": "./node_modules/.bin/tailwind build ./test.css -c ./test.js -o dist/test.css"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "tailwindcss-accessibility": "^1.0.0",
+    "tailwindcss-blend-mode": "^0.1.2",
+    "tailwindcss-filters": "^1.0.0",
+    "tailwindcss-gradients": "^1.0.0",
+    "tailwindcss-layout": "^1.0.0",
+    "tailwindcss-object-fit": "^1.0.1",
+    "tailwindcss-object-position": "^0.1.0",
+    "tailwindcss-transforms": "^1.0.0",
+    "tailwindcss-transitions": "^1.0.0",
+    "tailwindcss-typography": "^1.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^0.6.4"
+  }
+}
