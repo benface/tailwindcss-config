@@ -1,6 +1,6 @@
 {
   "name": "@benface/tailwindcss-config",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tailwind CSS config generator",
   "author": "Benoît Rouleau <benoit.rouleau@icloud.com>",
   "license": "ISC",
@@ -21,9 +21,9 @@
     "tailwindcss-object-position": "^0.1.0",
     "tailwindcss-transforms": "^1.0.1",
     "tailwindcss-transitions": "^1.0.1",
-    "tailwindcss-typography": "^1.0.0"
+    "tailwindcss-typography": "^1.0.1"
   },
   "devDependencies": {
-    "tailwindcss": "^0.6.4"
+    "tailwindcss": "^0.6.5"
   }
 }
