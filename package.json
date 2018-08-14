@@ -1,5 +1,5 @@
 {
-  "name": "tailwindcss-config",
+  "name": "@benface/tailwindcss-config",
   "version": "1.0.0",
   "description": "Tailwind CSS config generator",
   "author": "Benoît Rouleau <benoit.rouleau@icloud.com>",
