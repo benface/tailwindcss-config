@@ -11,19 +11,19 @@
     "test": "./node_modules/.bin/tailwind build ./test.css -c ./test.js -o dist/test.css"
   },
   "dependencies": {
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "tailwindcss-accessibility": "^1.0.0",
     "tailwindcss-blend-mode": "^0.1.2",
-    "tailwindcss-filters": "^1.0.1",
-    "tailwindcss-gradients": "^1.0.1",
-    "tailwindcss-layout": "^1.0.1",
+    "tailwindcss-filters": "^1.0.2",
+    "tailwindcss-gradients": "^1.1.0",
+    "tailwindcss-layout": "^1.0.2",
     "tailwindcss-object-fit": "^1.0.1",
-    "tailwindcss-object-position": "^0.1.0",
-    "tailwindcss-transforms": "^1.0.1",
-    "tailwindcss-transitions": "^1.0.1",
-    "tailwindcss-typography": "^1.0.1"
+    "tailwindcss-object-position": "^0.2.0",
+    "tailwindcss-transforms": "^1.0.2",
+    "tailwindcss-transitions": "^1.0.4",
+    "tailwindcss-typography": "^1.0.2"
   },
   "devDependencies": {
-    "tailwindcss": "^0.6.5"
+    "tailwindcss": "^0.7.2"
   }
 }

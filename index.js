@@ -58,6 +58,7 @@ module.exports = ({
   order = {},
   aspectRatio = {},
   gradients = {},
+  gradientDirections = {},
   textShadows = {},
   transitionProperties = {},
   transitionDurations = {},
@@ -427,6 +428,13 @@ module.exports = ({
     }),
     gradientsPlugin({
       variants: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+      directions: {
+        't': 'to top',
+        'r': 'to right',
+        'b': 'to bottom',
+        'l': 'to left',
+        ...gradientDirections,
+      },
       gradients: {
         'white': 'white',
         'black': 'black',
