@@ -19,6 +19,11 @@ h1, h2, h3, h4, h5, h6 {
     font: inherit;
 }
 
+img {
+    max-width: none; /* undo opinionated Preflight reset */
+    height: auto;
+}
+
 input, textarea, select, button {
     padding: 0;
     border-radius: 0;
