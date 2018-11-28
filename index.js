@@ -204,16 +204,16 @@ module.exports = ({
 
   leading = {
     'none': 1,
-    // 'tight': 1.2,
+    'tight': 1.2,
     'default': 1.4,
-    // 'loose': 1.8,
+    'loose': 1.8,
     ...leading,
   };
 
   tracking = {
-    // 'tight': '-0.05em',
+    'tight': '-0.05em',
     'default': '0',
-    // 'wide': '0.1em',
+    'wide': '0.1em',
     ...tracking,
   };
 
