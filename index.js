@@ -515,6 +515,7 @@ module.exports = ({
     transformsPlugin({
       variants: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
       translate: {
+        0: '0',
         ...percentages,
         ...translate,
       },
@@ -534,7 +535,6 @@ module.exports = ({
         ...rotate,
       },
       negativeRotate: {
-        '0': '0deg',
         '90': '90deg',
         '180': '180deg',
         '270': '270deg',
