@@ -19,6 +19,9 @@ module.exports = ({
   maxPxSize = 0,
   maxFixedPxSize = 0,
   maxDenominator = 12,
+  maxNumerator = 6,
+  maxDenominatorDifference = 1,
+  extraPercentages = {},
   maxBorderWidth = 16,
   maxZIndex = 100,
   maxIndent = 40,
@@ -78,6 +81,8 @@ module.exports = ({
 } = {}) => {
   const pxToRem = valueInPx => `${valueInPx / rootFontSize}rem`;
 
+  const ratioToPercentage = ratio => `${ratio * 100}%`;
+
   const range = (start, end, {
     step = 1,
     type = null,
@@ -135,18 +140,37 @@ module.exports = ({
   };
 
   const percentages = (() => {
-    const returnedPercentages = {};
+    const percentagesBelow100 = {};
     for (let denominator = 1; denominator <= maxDenominator; denominator += 1) {
       for (let numerator = 1; numerator <= denominator; numerator += 1) {
-        const key = numerator / denominator === 1 ? 'full' : `${numerator}/${denominator}`;
-        const value = `${numerator / denominator * 100}%`;
-        if (Object.values(returnedPercentages).includes(value)) {
+        let key = numerator / denominator === 1 ? 'full' : `${numerator}/${denominator}`;
+        let value = ratioToPercentage(numerator / denominator);
+        if (Object.values(percentagesBelow100).includes(value)) {
           continue;
         }
-        returnedPercentages[key] = value;
+        percentagesBelow100[key] = value;
       }
     }
-    return returnedPercentages;
+    const percentagesAbove100 = {};
+    for (let numerator = 2; numerator <= maxNumerator; numerator += 1) {
+      for (let denominatorDifference = 1; denominatorDifference <= maxDenominatorDifference; denominatorDifference += 1) {
+        let denominator = numerator - denominatorDifference;
+        if (denominator <= 0) {
+          continue;
+        }
+        let key = `${numerator}/${denominator}`;
+        let value = ratioToPercentage(numerator / denominator);
+        if (Object.values(percentagesAbove100).includes(value)) {
+          continue;
+        }
+        percentagesAbove100[key] = value;
+      }
+    }
+    return {
+      ...percentagesBelow100,
+      ...percentagesAbove100,
+      ...extraPercentages,
+    };
   })();
 
   colors = {
@@ -545,9 +569,13 @@ module.exports = ({
       },
       origins: {
         't': '50% 0%',
+        'tr': '100% 0%',
         'r': '100% 50%',
+        'br': '100% 100%',
         'b': '50% 100%',
+        'bl': '0% 100%',
         'l': '0% 50%',
+        'tl': '0% 0%',
         ...transformOrigins,
       },
     }),
