@@ -524,7 +524,7 @@ module.exports = ({
         ...negativeTranslate,
       },
       scale: {
-        ...range(5, maxScale, { step: 5, divideValueBy: 100 }),
+        ...range(0, maxScale, { step: 5, divideValueBy: 100 }),
         ...scale,
       },
       rotate: {
