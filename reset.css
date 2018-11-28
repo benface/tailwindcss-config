@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
     font: inherit;
 }
 
-input, textarea, button {
+input, textarea, select, button {
     padding: 0;
     border-radius: 0;
     background-clip: padding-box; /* remove inner shadow on iOS */
