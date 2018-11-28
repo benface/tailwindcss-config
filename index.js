@@ -430,9 +430,13 @@ module.exports = ({
       variants: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
       directions: {
         't': 'to top',
+        'tr': 'to top right',
         'r': 'to right',
+        'br': 'to bottom right',
         'b': 'to bottom',
+        'bl': 'to bottom left',
         'l': 'to left',
+        'tl': 'to top left',
         ...gradientDirections,
       },
       gradients: {

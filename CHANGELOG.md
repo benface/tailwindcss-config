@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2018-11-27
+
+### Changed
+- More gradient directions by default
+
 ## [1.1.0] - 2018-11-27
 
 ### Added
@@ -33,7 +38,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/benface/tailwindcss-config/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/benface/tailwindcss-config/compare/v1.0.3...v1.1.0
 [1.0.3]: https://github.com/benface/tailwindcss-config/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/benface/tailwindcss-config/compare/v1.0.1...v1.0.2
