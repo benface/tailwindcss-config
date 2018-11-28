@@ -8,7 +8,8 @@
   "bugs": "https://github.com/benface/tailwindcss-config/issues",
   "homepage": "https://github.com/benface/tailwindcss-config",
   "scripts": {
-    "test": "./node_modules/.bin/tailwind build ./test.css -c ./test.js -o dist/test.css"
+    "test": "./node_modules/.bin/tailwind build ./test.css -c ./test.js -o dist/test.css",
+    "release": "f(){ release-it $1 && github-release-from-changelog ;};f"
   },
   "dependencies": {
     "lodash": "^4.17.11",
@@ -24,6 +25,8 @@
     "tailwindcss-typography": "^1.0.2"
   },
   "devDependencies": {
+    "github-release-from-changelog": "^1.3.2",
+    "release-it": "^8.2.0",
     "tailwindcss": "^0.7.2"
   }
 }
