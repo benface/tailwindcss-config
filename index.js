@@ -2,11 +2,11 @@ const _ = require('lodash');
 const layoutPlugin = require('tailwindcss-layout');
 const gradientsPlugin = require('tailwindcss-gradients');
 const typographyPlugin = require('tailwindcss-typography');
+const listStylePlugin = require('tailwindcss-list-style');
+const multiColumnPlugin = require('tailwindcss-multi-column');
 const transitionsPlugin = require('tailwindcss-transitions');
 const transformsPlugin = require('tailwindcss-transforms');
 const filtersPlugin = require('tailwindcss-filters');
-const objectFitPlugin = require('tailwindcss-object-fit');
-const objectPositionPlugin = require('tailwindcss-object-position');
 const blendModePlugin = require('tailwindcss-blend-mode');
 const accessibilityPlugin = require('tailwindcss-accessibility');
 
@@ -76,6 +76,8 @@ module.exports = ({
   skew = {},
   transformOrigins = {},
   filters = {},
+  columnGapStep = 5,
+  maxColumnGap = 100,
   plugins = [],
   tailwindOptions = {},
 } = {}) => {
@@ -112,6 +114,12 @@ module.exports = ({
         return { [key]: value };
       }),
     );
+  };
+
+  const rangeArray = (start, end, {
+    step = 1,
+  } = {}) => {
+    return _.range(start, end + 1, step);
   };
 
   const gridRange = (start, end, options = {}) => range(start, end, {
@@ -397,6 +405,8 @@ module.exports = ({
     minHeight: ['responsive'],
     minWidth: ['responsive'],
     negativeMargin: ['responsive'],
+    objectFit: ['responsive'],
+    objectPosition: ['responsive'],
     opacity: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
     outline: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
     overflow: ['responsive'],
@@ -477,6 +487,12 @@ module.exports = ({
         'default': `0 ${pxToRem(2)} ${pxToRem(6)} rgba(0, 0, 0, 0.25)`,
         ...textShadows,
       },
+    }),
+    listStylePlugin(['responsive']),
+    multiColumnPlugin({
+      variants: ['responsive'],
+      counts: rangeArray(1, 5),
+      gaps: gridRange(0, maxColumnGap, { step: columnGapStep }),
     }),
     transitionsPlugin({
       variants: ['responsive'],
@@ -586,8 +602,6 @@ module.exports = ({
         ...filters,
       },
     }),
-    objectFitPlugin(['responsive']),
-    objectPositionPlugin(['responsive']),
     blendModePlugin(['responsive', 'hover', 'group-hover', 'active', 'focus']),
     accessibilityPlugin,
     ...plugins,
