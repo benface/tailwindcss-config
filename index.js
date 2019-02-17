@@ -9,6 +9,7 @@ const transformsPlugin = require('tailwindcss-transforms');
 const filtersPlugin = require('tailwindcss-filters');
 const blendModePlugin = require('tailwindcss-blend-mode');
 const accessibilityPlugin = require('tailwindcss-accessibility');
+const interactionVariantsPlugin = require('tailwindcss-interaction-variants');
 
 module.exports = ({
   rootFontSize = 16,
@@ -381,12 +382,12 @@ module.exports = ({
   modules = {
     appearance: ['responsive'],
     backgroundAttachment: ['responsive'],
-    backgroundColors: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+    backgroundColors: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
     backgroundPosition: ['responsive'],
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
     borderCollapse: ['responsive'],
-    borderColors: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+    borderColors: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
     borderRadius: ['responsive'],
     borderStyle: ['responsive'],
     borderWidths: ['responsive'],
@@ -395,7 +396,7 @@ module.exports = ({
     flexbox: ['responsive'],
     float: ['responsive'],
     fonts: ['responsive'],
-    fontWeights: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+    fontWeights: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
     height: ['responsive'],
     leading: ['responsive'],
     lists: ['responsive'],
@@ -407,21 +408,21 @@ module.exports = ({
     negativeMargin: ['responsive'],
     objectFit: ['responsive'],
     objectPosition: ['responsive'],
-    opacity: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
-    outline: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+    opacity: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
+    outline: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
     overflow: ['responsive'],
     padding: ['responsive'],
     pointerEvents: ['responsive'],
     position: ['responsive'],
     resize: ['responsive'],
-    shadows: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+    shadows: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
     svgFill: ['responsive'],
     svgStroke: ['responsive'],
     tableLayout: ['responsive'],
     textAlign: ['responsive'],
-    textColors: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+    textColors: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
     textSizes: ['responsive'],
-    textStyle: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+    textStyle: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
     tracking: ['responsive'],
     userSelect: ['responsive'],
     verticalAlign: ['responsive'],
@@ -604,6 +605,7 @@ module.exports = ({
     }),
     blendModePlugin(['responsive', 'hover', 'group-hover', 'active', 'focus']),
     accessibilityPlugin,
+    interactionVariantsPlugin(),
     ...plugins,
   ];
 
