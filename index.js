@@ -106,7 +106,7 @@ module.exports = ({
           value *= gridResolution;
         }
         if (type === 'grid' || type === 'px') {
-          value = value === 1 ? '1px' : pxToRem(value);
+          value = pxToRem(value);
         } else if (type === 'fpx') {
           value = `${value}px`;
         } else {
@@ -270,7 +270,7 @@ module.exports = ({
 
   borderWidths = {
     '0': '0',
-    'default': '1px',
+    'default': pxToRem(1),
     ...pxRange(2, maxBorderWidth, { includeUnitInKey: false }),
     ...borderWidths,
   };
