@@ -370,12 +370,12 @@ module.exports = ({
   };
 
   svgFill = {
-    'current': 'currentColor',
+    'current-color': 'currentColor',
     ...svgFill,
   };
 
   svgStroke = {
-    'current': 'currentColor',
+    'current-color': 'currentColor',
     ...svgStroke,
   };
 
@@ -476,6 +476,7 @@ module.exports = ({
         ...gradientDirections,
       },
       gradients: {
+        'current-color': 'currentColor',
         'white': 'white',
         'black': 'black',
         ...gradients,
@@ -571,15 +572,23 @@ module.exports = ({
       },
       rotate: {
         '0': '0deg',
+        '45': '45deg',
         '90': '90deg',
+        '135': '135deg',
         '180': '180deg',
+        '225': '225deg',
         '270': '270deg',
+        '315': '315deg',
         ...rotate,
       },
       negativeRotate: {
+        '45': '45deg',
         '90': '90deg',
+        '135': '135deg',
         '180': '180deg',
+        '225': '225deg',
         '270': '270deg',
+        '315': '315deg',
         ...negativeRotate,
       },
       skew: {
