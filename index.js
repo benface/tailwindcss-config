@@ -10,9 +10,9 @@ const transformsPlugin = require('tailwindcss-transforms');
 const filtersPlugin = require('tailwindcss-filters');
 const blendModePlugin = require('tailwindcss-blend-mode');
 const accessibilityPlugin = require('tailwindcss-accessibility');
-const fluidContainerPlugin = require('tailwindcss-fluid-container');
 const trianglesPlugin = require('tailwindcss-triangles');
 const interactionVariantsPlugin = require('tailwindcss-interaction-variants');
+const fluidContainerPlugin = require('tailwindcss-fluid-container');
 
 module.exports = ({
   rootFontSize = 16,
@@ -73,11 +73,9 @@ module.exports = ({
   transitionDelays = {},
   willChange = {},
   translate = {},
-  negativeTranslate = {},
   maxScale = 200,
   scale = {},
   rotate = {},
-  negativeRotate = {},
   skew = {},
   transformOrigins = {},
   filters = {},
@@ -150,7 +148,7 @@ module.exports = ({
   });
 
   const sizes = {
-    0: '0',
+    '0': '0',
     ...gridRange(1, Math.min(maxGridSizeBeforeSkipping, maxGridSize)),
     ...gridRange(maxGridSizeBeforeSkipping, maxGridSize, { step: gridSizeStepAfterSkipping }),
     ...pxRange(1, maxPxSize),
@@ -497,6 +495,7 @@ module.exports = ({
         ...transitionProperties,
       },
       durations: {
+        '0': '0',
         'default': '250ms',
         ...range(500, maxTransitionDuration, { step: 250, unit: 'ms' }),
         ...transitionDurations,
@@ -512,7 +511,7 @@ module.exports = ({
         ...transitionTimingFunctions,
       },
       delays: {
-        'none': '0s',
+        '0': '0',
         ...transitionDelays,
       },
       willChange: {
@@ -525,20 +524,20 @@ module.exports = ({
 
     transformsPlugin({
       translate: {
-        0: '0',
+        '0': '0',
         ...percentages,
         ...translate,
       },
       negativeTranslate: {
         ...percentages,
-        ...negativeTranslate,
+        ...translate,
       },
       scale: {
         ...range(0, maxScale, { step: 5, divideValueBy: 100 }),
         ...scale,
       },
       rotate: {
-        '0': '0deg',
+        '0': '0',
         '45': '45deg',
         '90': '90deg',
         '135': '135deg',
@@ -556,7 +555,7 @@ module.exports = ({
         '225': '225deg',
         '270': '270deg',
         '315': '315deg',
-        ...negativeRotate,
+        ...rotate,
       },
       skew: {
         ...skew,
@@ -579,12 +578,33 @@ module.exports = ({
       filters: {
         ...filters,
       },
+      backdropFilters: {
+        ...filters,
+      },
       variants: allVariants,
     }),
 
     blendModePlugin(allVariants),
 
     accessibilityPlugin,
+
+    trianglesPlugin({
+      triangles: {
+        'left': {
+          direction: 'left',
+        },
+        'right': {
+          direction: 'right',
+        },
+        'up': {
+          direction: 'up',
+        },
+        'down': {
+          direction: 'down',
+        },
+        ...triangles,
+      },
+    }),
 
     interactionVariantsPlugin(),
   ];
@@ -595,15 +615,6 @@ module.exports = ({
       fluidContainerPlugin({
         ...container,
         variants: ['responsive'],
-      }),
-    ];
-  }
-
-  if (!_.isEmpty(triangles)) {
-    plugins = [
-      ...plugins,
-      trianglesPlugin({
-        triangles: triangles,
       }),
     ];
   }
