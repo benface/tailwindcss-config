@@ -23,11 +23,6 @@ module.exports = ({
   maxNumerator = 6,
   maxDenominatorDifference = 1,
   extraPercentages = {},
-  maxBorderWidth = 16,
-  maxZIndex = 100,
-  maxIndent = 40,
-  maxTransitionDuration = 2000,
-  maxScale = 200,
   colors = {},
   screens = {},
   fonts = {},
@@ -38,6 +33,7 @@ module.exports = ({
   textColors = {},
   backgroundColors = {},
   backgroundSize = {},
+  maxBorderWidth = 16,
   borderWidths = {},
   borderColors = {},
   borderRadius = {},
@@ -51,11 +47,11 @@ module.exports = ({
   margin = {},
   negativeMargin = {},
   shadows = {},
+  maxZIndex = 100,
   zIndex = {},
   opacity = {},
   svgFill = {},
   svgStroke = {},
-  modules = {},
   offset = {},
   flexGrow = {},
   flexShrink = {},
@@ -63,22 +59,30 @@ module.exports = ({
   aspectRatio = {},
   gradients = {},
   gradientDirections = {},
+  maxIndent = 40,
   textShadows = {},
+  columnGapStep = 5,
+  maxColumnGap = 100,
   transitionProperties = {},
+  maxTransitionDuration = 2000,
   transitionDurations = {},
   transitionTimingFunctions = {},
   transitionDelays = {},
   willChange = {},
   translate = {},
   negativeTranslate = {},
+  maxScale = 200,
   scale = {},
   rotate = {},
   negativeRotate = {},
   skew = {},
   transformOrigins = {},
   filters = {},
-  columnGapStep = 5,
-  maxColumnGap = 100,
+  allVariants = ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+  modules = {},
+  components = {},
+  utilities = {},
+  utilityVariants = ['responsive'],
   plugins = [],
   tailwindOptions = {},
 } = {}) => {
@@ -382,12 +386,12 @@ module.exports = ({
   modules = {
     appearance: ['responsive'],
     backgroundAttachment: ['responsive'],
-    backgroundColors: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
+    backgroundColors: allVariants,
     backgroundPosition: ['responsive'],
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
     borderCollapse: ['responsive'],
-    borderColors: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
+    borderColors: allVariants,
     borderRadius: ['responsive'],
     borderStyle: ['responsive'],
     borderWidths: ['responsive'],
@@ -396,7 +400,7 @@ module.exports = ({
     flexbox: ['responsive'],
     float: ['responsive'],
     fonts: ['responsive'],
-    fontWeights: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
+    fontWeights: allVariants,
     height: ['responsive'],
     leading: ['responsive'],
     lists: ['responsive'],
@@ -408,21 +412,21 @@ module.exports = ({
     negativeMargin: ['responsive'],
     objectFit: ['responsive'],
     objectPosition: ['responsive'],
-    opacity: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
-    outline: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
+    opacity: allVariants,
+    outline: allVariants,
     overflow: ['responsive'],
     padding: ['responsive'],
     pointerEvents: ['responsive'],
     position: ['responsive'],
     resize: ['responsive'],
-    shadows: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
+    shadows: allVariants,
     svgFill: ['responsive'],
     svgStroke: ['responsive'],
     tableLayout: ['responsive'],
     textAlign: ['responsive'],
-    textColors: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
+    textColors: allVariants,
     textSizes: ['responsive'],
-    textStyle: ['responsive', 'hover', 'group-hover', 'active', 'group-active', 'focus', 'group-focus'],
+    textStyle: allVariants,
     tracking: ['responsive'],
     userSelect: ['responsive'],
     verticalAlign: ['responsive'],
@@ -433,9 +437,22 @@ module.exports = ({
     ...modules,
   };
 
+  let customPlugins = [];
+
+  if (!_.isEmpty(components)) {
+    customPlugins.push(({ addComponents }) => {
+      addComponents(components);
+    });
+  }
+
+  if (!_.isEmpty(utilities)) {
+    customPlugins.push(({ addUtilities }) => {
+      addUtilities(utilities, utilityVariants);
+    });
+  }
+
   plugins = [
     layoutPlugin({
-      variants: ['responsive'],
       offset: {
         'full': '100%',
         ...offset,
@@ -461,9 +478,9 @@ module.exports = ({
         '16/9': 16 / 9,
         ...aspectRatio,
       },
+      variants: ['responsive'],
     }),
     gradientsPlugin({
-      variants: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
       directions: {
         't': 'to top',
         'tr': 'to top right',
@@ -481,23 +498,23 @@ module.exports = ({
         'black': 'black',
         ...gradients,
       },
+      variants: allVariants,
     }),
     typographyPlugin({
-      variants: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
       indents: gridRange(0, maxIndent),
       textShadows: {
         'default': `0 ${pxToRem(2)} ${pxToRem(6)} rgba(0, 0, 0, 0.25)`,
         ...textShadows,
       },
+      variants: allVariants,
     }),
     listStylePlugin(['responsive']),
     multiColumnPlugin({
-      variants: ['responsive'],
       counts: rangeArray(1, 5),
       gaps: gridRange(0, maxColumnGap, { step: columnGapStep }),
+      variants: ['responsive'],
     }),
     transitionsPlugin({
-      variants: ['responsive'],
       properties: {
         'border': 'border-color',
         'bg': 'background-color',
@@ -554,9 +571,9 @@ module.exports = ({
         'transform': 'transform',
         ...willChange,
       },
+      variants: ['responsive'],
     }),
     transformsPlugin({
-      variants: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
       translate: {
         0: '0',
         ...percentages,
@@ -605,16 +622,18 @@ module.exports = ({
         'tl': '0% 0%',
         ...transformOrigins,
       },
+      variants: allVariants,
     }),
     filtersPlugin({
-      variants: ['responsive', 'hover', 'group-hover', 'active', 'focus'],
       filters: {
         ...filters,
       },
+      variants: allVariants,
     }),
-    blendModePlugin(['responsive', 'hover', 'group-hover', 'active', 'focus']),
+    blendModePlugin(allVariants),
     accessibilityPlugin,
     interactionVariantsPlugin(),
+    ...customPlugins,
     ...plugins,
   ];
 
