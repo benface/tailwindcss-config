@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2019-02-18
+
+### Added
+- Added the `tailwindcss-gap` plugin along with the `maxGap` option
+- Added the `tailwindcss-fluid-container` plugin along with the `container` option
+- Added the `tailwindcss-triangles` plugin along with the `triangles` option
+- Added the `tailwindcss-interaction-variants` plugin; those variants can be used by including them in the new `allVariants` option
+- Added the `tailwindcss-list-style` plugin
+- Added the `tailwindcss-multi-column` plugin along with the `maxColumnGap` option
+- Added the `components`, `utilities`, and `utilityVariant` options to create custom components and utilities
+- Added 45-degree rotation increments
+- Added `current-color` to the list of gradient colors
+
+### Removed
+- Removed the `tailwindcss-object-fit` and `tailwindcss-object-position` plugins since they were deprecated
+
+### Changed
+- Multiple reset improvements
+
+## [1.1.7] - 2018-12-14
+
+### Added
+- Added an `xxs` screen
+
 ## [1.1.6] - 2018-11-28
 
 ### Added
@@ -67,7 +91,9 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.1.6...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/benface/tailwindcss-config/compare/v1.1.7...v1.2.0
+[1.1.7]: https://github.com/benface/tailwindcss-config/compare/v1.1.6...v1.1.7
 [1.1.6]: https://github.com/benface/tailwindcss-config/compare/v1.1.5...v1.1.6
 [1.1.5]: https://github.com/benface/tailwindcss-config/compare/v1.1.4...v1.1.5
 [1.1.4]: https://github.com/benface/tailwindcss-config/compare/v1.1.3...v1.1.4
