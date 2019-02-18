@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const layoutPlugin = require('tailwindcss-layout');
+const gapPlugin = require('tailwindcss-gap');
 const gradientsPlugin = require('tailwindcss-gradients');
 const typographyPlugin = require('tailwindcss-typography');
 const listStylePlugin = require('tailwindcss-list-style');
@@ -9,6 +10,8 @@ const transformsPlugin = require('tailwindcss-transforms');
 const filtersPlugin = require('tailwindcss-filters');
 const blendModePlugin = require('tailwindcss-blend-mode');
 const accessibilityPlugin = require('tailwindcss-accessibility');
+const fluidContainerPlugin = require('tailwindcss-fluid-container');
+const trianglesPlugin = require('tailwindcss-triangles');
 const interactionVariantsPlugin = require('tailwindcss-interaction-variants');
 
 module.exports = ({
@@ -57,11 +60,11 @@ module.exports = ({
   flexShrink = {},
   order = {},
   aspectRatio = {},
+  maxGap = 100,
   gradients = {},
   gradientDirections = {},
   maxIndent = 40,
   textShadows = {},
-  columnGapStep = 5,
   maxColumnGap = 100,
   transitionProperties = {},
   maxTransitionDuration = 2000,
@@ -78,12 +81,14 @@ module.exports = ({
   skew = {},
   transformOrigins = {},
   filters = {},
-  allVariants = ['responsive', 'hover', 'group-hover', 'active', 'focus'],
-  modules = {},
+  container = null,
+  triangles = {},
   components = {},
   utilities = {},
   utilityVariants = ['responsive'],
   plugins = [],
+  modules = {},
+  allVariants = ['responsive', 'hover', 'group-hover', 'active', 'focus'],
   tailwindOptions = {},
 } = {}) => {
   const pxToRem = valueInPx => `${valueInPx / rootFontSize}rem`;
@@ -383,73 +388,7 @@ module.exports = ({
     ...svgStroke,
   };
 
-  modules = {
-    appearance: ['responsive'],
-    backgroundAttachment: ['responsive'],
-    backgroundColors: allVariants,
-    backgroundPosition: ['responsive'],
-    backgroundRepeat: ['responsive'],
-    backgroundSize: ['responsive'],
-    borderCollapse: ['responsive'],
-    borderColors: allVariants,
-    borderRadius: ['responsive'],
-    borderStyle: ['responsive'],
-    borderWidths: ['responsive'],
-    cursor: ['responsive'],
-    display: ['responsive'],
-    flexbox: ['responsive'],
-    float: ['responsive'],
-    fonts: ['responsive'],
-    fontWeights: allVariants,
-    height: ['responsive'],
-    leading: ['responsive'],
-    lists: ['responsive'],
-    margin: ['responsive'],
-    maxHeight: ['responsive'],
-    maxWidth: ['responsive'],
-    minHeight: ['responsive'],
-    minWidth: ['responsive'],
-    negativeMargin: ['responsive'],
-    objectFit: ['responsive'],
-    objectPosition: ['responsive'],
-    opacity: allVariants,
-    outline: allVariants,
-    overflow: ['responsive'],
-    padding: ['responsive'],
-    pointerEvents: ['responsive'],
-    position: ['responsive'],
-    resize: ['responsive'],
-    shadows: allVariants,
-    svgFill: ['responsive'],
-    svgStroke: ['responsive'],
-    tableLayout: ['responsive'],
-    textAlign: ['responsive'],
-    textColors: allVariants,
-    textSizes: ['responsive'],
-    textStyle: allVariants,
-    tracking: ['responsive'],
-    userSelect: ['responsive'],
-    verticalAlign: ['responsive'],
-    visibility: ['responsive'],
-    whitespace: ['responsive'],
-    width: ['responsive'],
-    zIndex: ['responsive'],
-    ...modules,
-  };
-
-  let customPlugins = [];
-
-  if (!_.isEmpty(components)) {
-    customPlugins.push(({ addComponents }) => {
-      addComponents(components);
-    });
-  }
-
-  if (!_.isEmpty(utilities)) {
-    customPlugins.push(({ addUtilities }) => {
-      addUtilities(utilities, utilityVariants);
-    });
-  }
+  let userPlugins = plugins;
 
   plugins = [
     layoutPlugin({
@@ -480,6 +419,12 @@ module.exports = ({
       },
       variants: ['responsive'],
     }),
+
+    gapPlugin({
+      gaps: gridRange(0, maxGap),
+      variants: ['responsive'],
+    }),
+
     gradientsPlugin({
       directions: {
         't': 'to top',
@@ -500,6 +445,7 @@ module.exports = ({
       },
       variants: allVariants,
     }),
+
     typographyPlugin({
       indents: gridRange(0, maxIndent),
       textShadows: {
@@ -508,12 +454,15 @@ module.exports = ({
       },
       variants: allVariants,
     }),
+
     listStylePlugin(['responsive']),
+
     multiColumnPlugin({
       counts: rangeArray(1, 5),
-      gaps: gridRange(0, maxColumnGap, { step: columnGapStep }),
+      gaps: gridRange(0, maxColumnGap),
       variants: ['responsive'],
     }),
+
     transitionsPlugin({
       properties: {
         'border': 'border-color',
@@ -573,6 +522,7 @@ module.exports = ({
       },
       variants: ['responsive'],
     }),
+
     transformsPlugin({
       translate: {
         0: '0',
@@ -624,18 +574,116 @@ module.exports = ({
       },
       variants: allVariants,
     }),
+
     filtersPlugin({
       filters: {
         ...filters,
       },
       variants: allVariants,
     }),
+
     blendModePlugin(allVariants),
+
     accessibilityPlugin,
+
     interactionVariantsPlugin(),
-    ...customPlugins,
-    ...plugins,
   ];
+
+  if (container !== null) {
+    plugins = [
+      ...plugins,
+      fluidContainerPlugin({
+        ...container,
+        variants: ['responsive'],
+      }),
+    ];
+  }
+
+  if (!_.isEmpty(triangles)) {
+    plugins = [
+      ...plugins,
+      trianglesPlugin({
+        triangles: triangles,
+      }),
+    ];
+  }
+
+  if (!_.isEmpty(components)) {
+    plugins = [
+      ...plugins,
+      ({ addComponents }) => {
+        addComponents(components);
+      },
+    ];
+  }
+
+  if (!_.isEmpty(utilities)) {
+    plugins = [
+      ...plugins,
+      ({ addUtilities }) => {
+        addUtilities(utilities, utilityVariants);
+      },
+    ];
+  }
+
+  plugins = [
+    ...plugins,
+    ...userPlugins,
+  ];
+
+  modules = {
+    appearance: ['responsive'],
+    backgroundAttachment: ['responsive'],
+    backgroundColors: allVariants,
+    backgroundPosition: ['responsive'],
+    backgroundRepeat: ['responsive'],
+    backgroundSize: ['responsive'],
+    borderCollapse: ['responsive'],
+    borderColors: allVariants,
+    borderRadius: ['responsive'],
+    borderStyle: ['responsive'],
+    borderWidths: ['responsive'],
+    cursor: ['responsive'],
+    display: ['responsive'],
+    flexbox: ['responsive'],
+    float: ['responsive'],
+    fonts: ['responsive'],
+    fontWeights: allVariants,
+    height: ['responsive'],
+    leading: ['responsive'],
+    lists: ['responsive'],
+    margin: ['responsive'],
+    maxHeight: ['responsive'],
+    maxWidth: ['responsive'],
+    minHeight: ['responsive'],
+    minWidth: ['responsive'],
+    negativeMargin: ['responsive'],
+    objectFit: ['responsive'],
+    objectPosition: ['responsive'],
+    opacity: allVariants,
+    outline: allVariants,
+    overflow: ['responsive'],
+    padding: ['responsive'],
+    pointerEvents: ['responsive'],
+    position: ['responsive'],
+    resize: ['responsive'],
+    shadows: allVariants,
+    svgFill: ['responsive'],
+    svgStroke: ['responsive'],
+    tableLayout: ['responsive'],
+    textAlign: ['responsive'],
+    textColors: allVariants,
+    textSizes: ['responsive'],
+    textStyle: allVariants,
+    tracking: ['responsive'],
+    userSelect: ['responsive'],
+    verticalAlign: ['responsive'],
+    visibility: ['responsive'],
+    whitespace: ['responsive'],
+    width: ['responsive'],
+    zIndex: ['responsive'],
+    ...modules,
+  };
 
   const options = {
     prefix: '',
@@ -672,8 +720,8 @@ module.exports = ({
     opacity,
     svgFill,
     svgStroke,
-    modules,
     plugins,
+    modules,
     options,
   };
 };

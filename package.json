@@ -16,6 +16,8 @@
     "tailwindcss-accessibility": "^1.0.0",
     "tailwindcss-blend-mode": "^0.1.2",
     "tailwindcss-filters": "^1.0.2",
+    "tailwindcss-fluid-container": "^1.0.0",
+    "tailwindcss-gap": "^1.0.0",
     "tailwindcss-gradients": "^1.1.0",
     "tailwindcss-interaction-variants": "^1.0.0",
     "tailwindcss-layout": "^1.0.2",
@@ -23,6 +25,7 @@
     "tailwindcss-multi-column": "^0.2.0",
     "tailwindcss-transforms": "^1.0.2",
     "tailwindcss-transitions": "^1.0.4",
+    "tailwindcss-triangles": "^1.0.0",
     "tailwindcss-typography": "^1.0.2"
   },
   "devDependencies": {
