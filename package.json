@@ -1,6 +1,6 @@
 {
   "name": "@benface/tailwindcss-config",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Tailwind CSS config generator",
   "author": "Benoît Rouleau <benoit.rouleau@icloud.com>",
   "license": "ISC",
