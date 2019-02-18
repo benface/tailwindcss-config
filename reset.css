@@ -2,11 +2,13 @@
     position: relative; /* make absolutely positioned elements relative to their parent by default */
     min-width: 0; /* prevent flex items from overflowing horizontally */
     min-height: 0; /* prevent flex items from overflowing vertically */
+    background-position: center center;
     background-repeat: no-repeat;
 }
 
 body {
-    @apply font-default font-regular text-default leading-default antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -23,10 +25,13 @@ img {
     height: auto;
 }
 
-input, textarea, select, button {
+input, textarea, select {
     padding: 0;
-    border-radius: 0;
-    background-clip: padding-box; /* remove inner shadow on iOS */
+    border-radius: 0; /* for iOS */
+}
+
+input, textarea, button {
+    background-color: transparent;
     font: inherit;
     color: inherit;
 }
