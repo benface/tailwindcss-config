@@ -79,7 +79,7 @@ module.exports = ({
   skew = {},
   transformOrigins = {},
   filters = {},
-  container = null,
+  containers = {},
   triangles = {},
   components = {},
   utilities = {},
@@ -609,11 +609,11 @@ module.exports = ({
     interactionVariantsPlugin(),
   ];
 
-  if (container !== null) {
+  if (!_.isEmpty(containers)) {
     plugins = [
       ...plugins,
       fluidContainerPlugin({
-        ...container,
+        containers,
         variants: ['responsive'],
       }),
     ];
