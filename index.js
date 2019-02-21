@@ -495,7 +495,7 @@ module.exports = ({
         ...transitionProperties,
       },
       durations: {
-        '0': '0',
+        '0': '0ms',
         'default': '250ms',
         ...range(500, maxTransitionDuration, { step: 250, unit: 'ms' }),
         ...transitionDurations,
@@ -511,7 +511,7 @@ module.exports = ({
         ...transitionTimingFunctions,
       },
       delays: {
-        '0': '0',
+        '0': '0ms',
         ...transitionDelays,
       },
       willChange: {

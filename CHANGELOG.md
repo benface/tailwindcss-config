@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.3] - 2019-02-21
+
+### Fixed
+- Added a unit to the `0` value of properties that take time values (`transition-duration` and `transition-delay`), since a unitless `0` is invalid even though it works in some browsers
+
 ## [1.2.2] - 2019-02-19
 
 ### Changed
@@ -108,7 +113,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.2...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.3...HEAD
+[1.2.3]: https://github.com/benface/tailwindcss-config/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/benface/tailwindcss-config/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/benface/tailwindcss-config/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/benface/tailwindcss-config/compare/v1.1.7...v1.2.0
