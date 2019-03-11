@@ -83,7 +83,7 @@ module.exports = ({
   triangles = {},
   components = {},
   utilities = {},
-  utilityVariants = ['responsive'],
+  utilityVariants = ['responsive', 'hover', 'group-hover', 'active', 'focus'],
   plugins = [],
   modules = {},
   allVariants = ['responsive', 'hover', 'group-hover', 'active', 'focus'],
@@ -314,6 +314,8 @@ module.exports = ({
   };
 
   minWidth = {
+    'screen': '100vw',
+    'screen-1/2': '50vw',
     ...sizes,
     ...percentages,
     ...minWidth,
@@ -321,6 +323,7 @@ module.exports = ({
 
   minHeight = {
     'screen': '100vh',
+    'screen-1/2': '50vh',
     ...sizes,
     ...percentages,
     ...minHeight,
@@ -329,6 +332,7 @@ module.exports = ({
   maxWidth = {
     'none': 'none',
     'screen': '100vw',
+    'screen-1/2': '50vw',
     ...screens,
     ...sizes,
     ...percentages,
@@ -336,7 +340,9 @@ module.exports = ({
   };
 
   maxHeight = {
+    'none': 'none',
     'screen': '100vh',
+    'screen-1/2': '50vh',
     ...sizes,
     ...percentages,
     ...maxHeight,
@@ -415,7 +421,7 @@ module.exports = ({
         '16/9': 16 / 9,
         ...aspectRatio,
       },
-      variants: ['responsive'],
+      variants: allVariants,
     }),
 
     gapPlugin({
@@ -453,7 +459,7 @@ module.exports = ({
       variants: allVariants,
     }),
 
-    listStylePlugin(['responsive']),
+    listStylePlugin(allVariants),
 
     multiColumnPlugin({
       counts: rangeArray(1, 5),
@@ -519,7 +525,7 @@ module.exports = ({
         'transform': 'transform',
         ...willChange,
       },
-      variants: ['responsive'],
+      variants: allVariants,
     }),
 
     transformsPlugin({
@@ -614,7 +620,7 @@ module.exports = ({
       ...plugins,
       fluidContainerPlugin({
         containers,
-        variants: ['responsive'],
+        variants: allVariants,
       }),
     ];
   }
@@ -643,56 +649,56 @@ module.exports = ({
   ];
 
   modules = {
-    appearance: ['responsive'],
-    backgroundAttachment: ['responsive'],
+    appearance: allVariants,
+    backgroundAttachment: allVariants,
     backgroundColors: allVariants,
-    backgroundPosition: ['responsive'],
-    backgroundRepeat: ['responsive'],
-    backgroundSize: ['responsive'],
-    borderCollapse: ['responsive'],
+    backgroundPosition: allVariants,
+    backgroundRepeat: allVariants,
+    backgroundSize: allVariants,
+    borderCollapse: allVariants,
     borderColors: allVariants,
-    borderRadius: ['responsive'],
-    borderStyle: ['responsive'],
-    borderWidths: ['responsive'],
-    cursor: ['responsive'],
-    display: ['responsive'],
-    flexbox: ['responsive'],
-    float: ['responsive'],
-    fonts: ['responsive'],
+    borderRadius: allVariants,
+    borderStyle: allVariants,
+    borderWidths: allVariants,
+    cursor: allVariants,
+    display: allVariants,
+    flexbox: allVariants,
+    float: allVariants,
+    fonts: allVariants,
     fontWeights: allVariants,
     height: ['responsive'],
-    leading: ['responsive'],
-    lists: ['responsive'],
+    leading: allVariants,
+    lists: allVariants,
     margin: ['responsive'],
     maxHeight: ['responsive'],
     maxWidth: ['responsive'],
     minHeight: ['responsive'],
     minWidth: ['responsive'],
     negativeMargin: ['responsive'],
-    objectFit: ['responsive'],
-    objectPosition: ['responsive'],
+    objectFit: allVariants,
+    objectPosition: allVariants,
     opacity: allVariants,
     outline: allVariants,
-    overflow: ['responsive'],
+    overflow: allVariants,
     padding: ['responsive'],
-    pointerEvents: ['responsive'],
-    position: ['responsive'],
-    resize: ['responsive'],
+    pointerEvents: allVariants,
+    position: allVariants,
+    resize: allVariants,
     shadows: allVariants,
-    svgFill: ['responsive'],
-    svgStroke: ['responsive'],
-    tableLayout: ['responsive'],
-    textAlign: ['responsive'],
+    svgFill: allVariants,
+    svgStroke: allVariants,
+    tableLayout: allVariants,
+    textAlign: allVariants,
     textColors: allVariants,
-    textSizes: ['responsive'],
+    textSizes: allVariants,
     textStyle: allVariants,
-    tracking: ['responsive'],
-    userSelect: ['responsive'],
-    verticalAlign: ['responsive'],
-    visibility: ['responsive'],
-    whitespace: ['responsive'],
+    tracking: allVariants,
+    userSelect: allVariants,
+    verticalAlign: allVariants,
+    visibility: allVariants,
+    whitespace: allVariants,
     width: ['responsive'],
-    zIndex: ['responsive'],
+    zIndex: allVariants,
     ...modules,
   };
 
