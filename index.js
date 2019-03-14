@@ -387,7 +387,7 @@ module.exports = ({
   plugins = [
     layoutPlugin({
       offset: {
-        'full': '100%',
+        ...percentages,
         ...offset,
       },
       flexGrow: {
