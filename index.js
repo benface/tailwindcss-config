@@ -24,13 +24,13 @@ module.exports = ({
   maxFixedPxSize = 0,
   maxDenominator = 12,
   maxNumerator = 6,
-  maxDenominatorDifference = 1,
+  maxDenominatorDifference = 2,
   extraPercentages = {},
-  colors = {},
   screens = {},
+  colors = {},
   fonts = {},
-  textSizes = {},
   fontWeights = {},
+  textSizes = {},
   leading = {},
   tracking = {},
   textColors = {},
@@ -56,8 +56,11 @@ module.exports = ({
   svgFill = {},
   svgStroke = {},
   offset = {},
+  maxFlexGrow = 5,
   flexGrow = {},
+  maxFlexShrink = 5,
   flexShrink = {},
+  maxOrder = 5,
   order = {},
   aspectRatio = {},
   maxGap = 100,
@@ -114,9 +117,11 @@ module.exports = ({
         }
         if (type === 'grid' || type === 'px') {
           value = pxToRem(value);
-        } else if (type === 'fpx') {
+        }
+        else if (type === 'fpx') {
           value = `${value}px`;
-        } else {
+        }
+        else {
           value += unit;
         }
         return { [key]: value };
@@ -130,29 +135,13 @@ module.exports = ({
     return _.range(start, end + 1, step);
   };
 
-  const gridRange = (start, end, options = {}) => range(start, end, {
-    type: 'grid',
-    ...options,
-  });
-
-  const pxRange = (start, end, options = {}) => range(start, end, {
-    type: 'px',
-    includeUnitInKey: true,
-    ...options,
-  });
-
-  const fixedPxRange = (start, end, options = {}) => range(start, end, {
-    type: 'fpx',
-    includeUnitInKey: true,
-    ...options,
-  });
-
   const sizes = {
     '0': '0',
-    ...gridRange(1, Math.min(maxGridSizeBeforeSkipping, maxGridSize)),
-    ...gridRange(maxGridSizeBeforeSkipping, maxGridSize, { step: gridSizeStepAfterSkipping }),
-    ...pxRange(1, maxPxSize),
-    ...fixedPxRange(1, maxFixedPxSize),
+    'em': '1em',
+    ...range(1, Math.min(maxGridSizeBeforeSkipping, maxGridSize), { type: 'grid' }),
+    ...range(maxGridSizeBeforeSkipping, maxGridSize, { step: gridSizeStepAfterSkipping, type: 'grid' }),
+    ...range(1, maxPxSize, { type: 'px', includeUnitInKey: true }),
+    ...range(1, maxFixedPxSize, { type: 'fpx', includeUnitInKey: true }),
   };
 
   const percentages = (() => {
@@ -189,14 +178,6 @@ module.exports = ({
     };
   })();
 
-  colors = {
-    'current-color': 'currentColor',
-    'transparent': 'transparent',
-    'white': 'white',
-    'black': 'black',
-    ...colors,
-  };
-
   screens = {
     'xxs': '350px',
     'xs': '400px',
@@ -205,6 +186,14 @@ module.exports = ({
     'lg': '1000px',
     'xl': '1200px',
     ...screens,
+  };
+
+  colors = {
+    'current-color': 'currentColor',
+    'transparent': 'transparent',
+    'white': 'white',
+    'black': 'black',
+    ...colors,
   };
 
   fonts = {
@@ -225,11 +214,6 @@ module.exports = ({
     ...fonts,
   };
 
-  textSizes = {
-    'default': pxToRem(rootFontSize),
-    ...textSizes,
-  };
-
   fontWeights = {
     // 'hairline': 100,
     // 'thin': 200,
@@ -241,6 +225,11 @@ module.exports = ({
     // 'extrabold': 800,
     // 'black': 900,
     ...fontWeights,
+  };
+
+  textSizes = {
+    'default': pxToRem(rootFontSize),
+    ...textSizes,
   };
 
   leading = {
@@ -278,7 +267,7 @@ module.exports = ({
   borderWidths = {
     '0': '0',
     'default': pxToRem(1),
-    ...pxRange(2, maxBorderWidth, { includeUnitInKey: false }),
+    ...range(2, maxBorderWidth, { type: 'px' }),
     ...borderWidths,
   };
 
@@ -362,6 +351,7 @@ module.exports = ({
 
   negativeMargin = {
     ...sizes,
+    ...percentages,
     ...negativeMargin,
   };
 
@@ -401,31 +391,34 @@ module.exports = ({
         ...offset,
       },
       flexGrow: {
-        '2': '2',
-        '3': '3',
+        ...range(2, maxFlexGrow),
         ...flexGrow,
       },
       flexShrink: {
-        '2': '2',
-        '3': '3',
+        ...range(2, maxFlexShrink),
         ...flexShrink,
       },
       order: {
-        '0': '0',
-        '1': '1',
-        '2': '2',
+        ...range(0, maxOrder),
         ...order,
       },
       aspectRatio: {
-        '1/1': 1,
+        '1/2': 1 / 2,
+        '2/3': 2 / 3,
+        '3/4': 3 / 4,
+        '1/1': 1 / 1,
+        '4/3': 4 / 3,
+        '3/2': 3 / 2,
         '16/9': 16 / 9,
+        '2/1': 2 / 1,
+        '5/2': 5 / 2,
         ...aspectRatio,
       },
       variants: allVariants,
     }),
 
     gapPlugin({
-      gaps: gridRange(0, maxGap),
+      gaps: range(0, maxGap, { type: 'grid' }),
       variants: ['responsive'],
     }),
 
@@ -451,7 +444,7 @@ module.exports = ({
     }),
 
     typographyPlugin({
-      indents: gridRange(0, maxIndent),
+      indents: range(0, maxIndent, { type: 'grid' }),
       textShadows: {
         'default': `0 ${pxToRem(2)} ${pxToRem(6)} rgba(0, 0, 0, 0.25)`,
         ...textShadows,
@@ -463,7 +456,7 @@ module.exports = ({
 
     multiColumnPlugin({
       counts: rangeArray(1, 5),
-      gaps: gridRange(0, maxColumnGap),
+      gaps: range(0, maxColumnGap, { type: 'grid' }),
       variants: ['responsive'],
     }),
 
@@ -543,24 +536,11 @@ module.exports = ({
         ...scale,
       },
       rotate: {
-        '0': '0',
-        '45': '45deg',
-        '90': '90deg',
-        '135': '135deg',
-        '180': '180deg',
-        '225': '225deg',
-        '270': '270deg',
-        '315': '315deg',
+        ...range(0, 315, { step: 45, unit: 'deg' }),
         ...rotate,
       },
       negativeRotate: {
-        '45': '45deg',
-        '90': '90deg',
-        '135': '135deg',
-        '180': '180deg',
-        '225': '225deg',
-        '270': '270deg',
-        '315': '315deg',
+        ...range(45, 315, { step: 45, unit: 'deg' }),
         ...rotate,
       },
       skew: {
@@ -710,11 +690,11 @@ module.exports = ({
   };
 
   return {
-    colors,
     screens,
+    colors,
     fonts,
-    textSizes,
     fontWeights,
+    textSizes,
     leading,
     tracking,
     textColors,
