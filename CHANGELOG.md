@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.6] - 2019-03-18
+
+### Added
+- Added more aspect ratios
+
 ## [1.2.5] - 2019-03-14
 
 ### Added
@@ -135,7 +140,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.5...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.6...HEAD
+[1.2.6]: https://github.com/benface/tailwindcss-config/compare/v1.2.5...v1.2.6
 [1.2.5]: https://github.com/benface/tailwindcss-config/compare/v1.2.4...v1.2.5
 [1.2.4]: https://github.com/benface/tailwindcss-config/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/benface/tailwindcss-config/compare/v1.2.2...v1.2.3
