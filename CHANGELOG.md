@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.7] - 2019-03-29
+
+### Changed
+- Multiple reset improvements
+
 ## [1.2.6] - 2019-03-18
 
 ### Added
@@ -140,7 +145,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.6...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.7...HEAD
+[1.2.7]: https://github.com/benface/tailwindcss-config/compare/v1.2.6...v1.2.7
 [1.2.6]: https://github.com/benface/tailwindcss-config/compare/v1.2.5...v1.2.6
 [1.2.5]: https://github.com/benface/tailwindcss-config/compare/v1.2.4...v1.2.5
 [1.2.4]: https://github.com/benface/tailwindcss-config/compare/v1.2.3...v1.2.4

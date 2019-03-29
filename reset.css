@@ -16,6 +16,10 @@ a {
     text-decoration: none;
 }
 
+cite, em, var, address, dfn {
+    font-style: inherit;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font: inherit;
 }
@@ -25,17 +29,25 @@ img {
     height: auto;
 }
 
-input, textarea, select {
+input, textarea, select, button {
     padding: 0;
     border-radius: 0; /* for iOS */
-}
-
-input, textarea, button {
     background-color: transparent;
     font: inherit;
     color: inherit;
+    text-align: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
 }
 
 th, td {
     padding: 0;
+}
+
+hr {
+    margin: 0;
+}
+
+[hidden] {
+    display: none !important;
 }
