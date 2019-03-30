@@ -17,7 +17,7 @@
     "tailwindcss-blend-mode": "^0.1.2",
     "tailwindcss-filters": "^1.0.2",
     "tailwindcss-fluid-container": "^1.0.0",
-    "tailwindcss-gap": "^1.0.1",
+    "tailwindcss-gap": "^2.0.0",
     "tailwindcss-gradients": "^1.1.0",
     "tailwindcss-interaction-variants": "^1.0.0",
     "tailwindcss-layout": "^1.0.2",
@@ -26,11 +26,11 @@
     "tailwindcss-transforms": "^1.0.2",
     "tailwindcss-transitions": "^1.0.4",
     "tailwindcss-triangles": "^1.0.0",
-    "tailwindcss-typography": "^1.0.2"
+    "tailwindcss-typography": "^1.1.0"
   },
   "devDependencies": {
     "github-release-from-changelog": "^1.3.2",
-    "release-it": "^10.1.0",
-    "tailwindcss": "^0.7.4"
+    "release-it": "^10.3.1",
+    "tailwindcss": "0.7.4"
   }
 }
