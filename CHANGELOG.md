@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.9] - 2019-04-03
+
+### Changed
+- Small reset improvements
+
+### Fixed
+- Fixed reset issue on Windows where `select` options had white text on white background when the `select` had (or inherited) white text on a transparent background
+
 ## [1.2.8] - 2019-03-29
 
 ### Changed
@@ -150,7 +158,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.8...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.9...HEAD
+[1.2.9]: https://github.com/benface/tailwindcss-config/compare/v1.2.8...v1.2.9
 [1.2.8]: https://github.com/benface/tailwindcss-config/compare/v1.2.7...v1.2.8
 [1.2.7]: https://github.com/benface/tailwindcss-config/compare/v1.2.6...v1.2.7
 [1.2.6]: https://github.com/benface/tailwindcss-config/compare/v1.2.5...v1.2.6

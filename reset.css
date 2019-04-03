@@ -41,6 +41,11 @@ input, textarea, select, button {
     letter-spacing: inherit;
 }
 
+select option {
+    background-color: white;
+    color: black;
+}
+
 small {
     font-size: inherit;
 }
