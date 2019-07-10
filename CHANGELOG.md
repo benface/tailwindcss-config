@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0-beta.2] - 2019-07-10
+
+### Added
+- Added a `pxSpacingStep` option that defaults to `1`
+
+### Changed
+- Re-added a default font weight, renamed from `regular` to `normal`
+
+### Removed
+- Removed the `2xs` screen
+
+### Fixed
+- Added the missing text shadow utilities (`none` and `default`)
+
 ## [2.0.0-beta.1] - 2019-07-10
 
 ### Added
@@ -215,7 +229,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.1...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.2...HEAD
+[2.0.0-beta.2]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.1...v2.0.0-beta.2
 [2.0.0-beta.1]: https://github.com/benface/tailwindcss-config/compare/v1.2.9...v2.0.0-beta.1
 [1.2.9]: https://github.com/benface/tailwindcss-config/compare/v1.2.8...v1.2.9
 [1.2.8]: https://github.com/benface/tailwindcss-config/compare/v1.2.7...v1.2.8

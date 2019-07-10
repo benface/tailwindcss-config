@@ -23,6 +23,7 @@ module.exports = ({
   gridResolution = 1,
   maxGridSpacing = 400,
   maxPxSpacing = 0,
+  pxSpacingStep = 1,
   maxEmSpacing = 2,
   emSpacingStep = 0.25,
   maxVwSpacing = 1,
@@ -97,16 +98,11 @@ module.exports = ({
     step = 1,
     unit = null,
     includeUnitInKey = false,
-    excludeZero = false,
     multiplyValueBy = 1,
     divideValueBy = 1,
   } = {}) => {
-    return Object.assign(
-      {},
-      ..._.range(start, end + step, step).map(value => {
-        if (excludeZero && value === 0) {
-          return null;
-        }
+    return _.fromPairs(
+      _.range(start, end + step, step).map(value => {
         let key = value;
         if (Math.round(key) !== key) {
           key = num2fraction(key);
@@ -125,10 +121,8 @@ module.exports = ({
         else if (unit) {
           value += unit;
         }
-        return {
-          [key]: value,
-        };
-      }),
+        return [key, value];
+      })
     );
   };
 
@@ -163,9 +157,7 @@ module.exports = ({
     separator,
 
     theme: {
-
       screens: {
-        '2xs': '360px',
         'xs': '420px',
         ...defaultTheme.screens,
       },
@@ -179,10 +171,10 @@ module.exports = ({
 
       spacing: {
         ...range(0, maxGridSpacing, { unit: 'grid' }),
-        ...range(0, maxPxSpacing, { unit: 'px', includeUnitInKey: true, excludeZero: true }),
-        ...range(0, maxEmSpacing, { step: emSpacingStep, unit: 'em', includeUnitInKey: true, excludeZero: true }),
-        ...range(0, maxVwSpacing, { step: vwSpacingStep, unit: 'vw', includeUnitInKey: true, excludeZero: true }),
-        ...range(0, maxVhSpacing, { step: vhSpacingStep, unit: 'vh', includeUnitInKey: true, excludeZero: true }),
+        ...range(pxSpacingStep, maxPxSpacing, { step: pxSpacingStep, unit: 'px', includeUnitInKey: true }),
+        ...range(emSpacingStep, maxEmSpacing, { step: emSpacingStep, unit: 'em', includeUnitInKey: true }),
+        ...range(vwSpacingStep, maxVwSpacing, { step: vwSpacingStep, unit: 'vw', includeUnitInKey: true }),
+        ...range(vhSpacingStep, maxVhSpacing, { step: vhSpacingStep, unit: 'vh', includeUnitInKey: true }),
       },
 
       percentages: {
@@ -207,7 +199,9 @@ module.exports = ({
         ],
       },
 
-      fontWeight: {},
+      fontWeight: {
+        'normal': '400',
+      },
 
       fontSize: {
         'default': pxToRem(16),
@@ -220,6 +214,11 @@ module.exports = ({
 
       letterSpacing: {
         'default': '0',
+      },
+
+      boxShadow: {
+        'none': 'none',
+        'default': `0 ${pxToRem(1)} ${pxToRem(3)} 0 rgba(0, 0, 0, 0.1), 0 ${pxToRem(1)} ${pxToRem(2)} 0 rgba(0, 0, 0, 0.06)`,
       },
 
       borderWidth: {
@@ -236,12 +235,7 @@ module.exports = ({
       borderRadius: {
         'none': '0',
         'default': pxToRem(4),
-        'full': '99999px',
-      },
-
-      boxShadow: {
-        'none': 'none',
-        'default': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+        'full': pxToRem(99999),
       },
 
       width: theme => ({
@@ -348,6 +342,11 @@ module.exports = ({
 
       textIndent: {
         ...range(0, maxTextIndent, { step: textIndentStep, unit: 'grid' }),
+      },
+
+      textShadow: {
+        'none': 'none',
+        'default': `0 ${pxToRem(1)} ${pxToRem(3)} rgba(0, 0, 0, 0.2)`,
       },
 
       columnCount: [
@@ -550,25 +549,41 @@ module.exports = ({
           },
         });
       },
+
       ...(enableReset ? [resetPlugin()] : []),
+
       typographyPlugin(),
+
       multiColumnPlugin(),
+
       gapPlugin({
         legacy: gapLegacy,
       }),
+
       aspectRatioPlugin(),
+
       gradientsPlugin(),
+
       transitionsPlugin(),
+
       transformsPlugin({
         '3d': enable3dTransforms,
       }),
+
       filtersPlugin(),
+
       blendModePlugin(),
+
       accessibilityPlugin,
+
       fluidContainerPlugin(),
+
       trianglesPlugin(),
+
       interactionVariantsPlugin(),
+      
       childrenPlugin(),
+
       ...plugins,
     ],
   };
