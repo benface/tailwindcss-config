@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0-beta.1] - 2019-07-10
 
 ### Added
 - Tailwind 1.0.0 compatibility
@@ -15,6 +15,7 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 - Added `maxAspectRatioDenominator` and `maxAspectRatioNumerator` options that both default to `20`
 - Added `maxTranslateDenominator` and `maxTranslateNumerator` options that both default to `4`
 - Added a `gapStep` option that defaults to `5`
+- Added a `gapLegacy` option that defaults to `false`
 - Added a `opacityStep` option that defaults to `5`
 - Added a `zIndexStep` option that defaults to `10`
 - Added a `textIndentStep` option that defaults to `1`
@@ -25,6 +26,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 - Added a `minScale` option that defaults to `-100`
 - Added a `scaleStep` option that defaults to `5`
 - Added a `rotateStep` option that defaults to `45`
+- Added a `enable3dTransforms` option that defaults to `true`
+- Added a `enableReset` option that defaults to `true`
 
 ### Changed
 - Changed the default value of `rootFontSize` from `16` to `1`
@@ -49,10 +52,12 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 - Changed `*-current-color` classes (e.g. `bg-current-color`) to `*-current`
 - Changed the `*-em` classes (e.g. `w-em`) to `*-1em`
 - Changed the `*-screen` classes and `*-screen-1/2` classes to `*-1vw` / `*-1vh` and `*-1/2vw` / `*-1/2vh`, respectively
+- The reset and the root font size are now included in the generated CSS, no need to import/specify them manually
 
 ### Removed
 - Removed the `maxDenominatorDifference` and `extraPercentages` options
 - Removed the `maxFixedPxSize` option
+- Removed the `components`, `utilities`, and `utilityVariants` options
 - Removed the `regular` font weight, there are no font weights by default anymore
 - Removed the `tight` and `loose` leadings
 - Removed the `tight` and `wide` trackings
@@ -210,7 +215,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v1.2.9...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.1...HEAD
+[2.0.0-beta.1]: https://github.com/benface/tailwindcss-config/compare/v1.2.9...v2.0.0-beta.1
 [1.2.9]: https://github.com/benface/tailwindcss-config/compare/v1.2.8...v1.2.9
 [1.2.8]: https://github.com/benface/tailwindcss-config/compare/v1.2.7...v1.2.8
 [1.2.7]: https://github.com/benface/tailwindcss-config/compare/v1.2.6...v1.2.7

@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const num2fraction = require('num2fraction');
 const defaultTheme = require('tailwindcss/defaultTheme');
+const resetPlugin = require('@benface/tailwindcss-reset');
 const typographyPlugin = require('tailwindcss-typography');
 const multiColumnPlugin = require('tailwindcss-multi-column');
 const gapPlugin = require('tailwindcss-gap');
@@ -67,6 +68,7 @@ module.exports = ({
   columnGapStep = 5,
   maxGap = null,
   gapStep = 5,
+  gapLegacy = false,
   maxTransitionDuration = 2000,
   transitionDurationStep = 250,
   maxTransitionDelay = 2000,
@@ -75,6 +77,8 @@ module.exports = ({
   maxScale = 200,
   scaleStep = 5,
   rotateStep = 45,
+  enable3dTransforms = true,
+  enableReset = true,
 
   defaultVariants = ['responsive', 'hover', 'group-hover', 'active', 'focus'],
   
@@ -539,15 +543,24 @@ module.exports = ({
     },
 
     plugins: [
-
+      function({ addBase }) {
+        addBase({
+          'html': {
+            fontSize: `${rootFontSize}px`,
+          },
+        });
+      },
+      ...(enableReset ? [resetPlugin()] : []),
       typographyPlugin(),
       multiColumnPlugin(),
-      gapPlugin(),
+      gapPlugin({
+        legacy: gapLegacy,
+      }),
       aspectRatioPlugin(),
       gradientsPlugin(),
       transitionsPlugin(),
       transformsPlugin({
-        '3d': true,
+        '3d': enable3dTransforms,
       }),
       filtersPlugin(),
       blendModePlugin(),
@@ -556,7 +569,6 @@ module.exports = ({
       trianglesPlugin(),
       interactionVariantsPlugin(),
       childrenPlugin(),
-
       ...plugins,
     ],
   };

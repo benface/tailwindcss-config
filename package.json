@@ -12,6 +12,7 @@
     "release": "f(){ release-it $1 && github-release-from-changelog ;};f"
   },
   "dependencies": {
+    "@benface/tailwindcss-reset": "^1.0.0",
     "lodash": "^4.17.14",
     "num2fraction": "^1.2.2",
     "tailwindcss-accessibility": "^1.0.0",
