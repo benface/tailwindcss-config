@@ -5,6 +5,58 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Tailwind 1.0.0 compatibility
+- Added `maxEmSpacing` and `emSpacingStep` options that default to `2` and `0.25` respectively
+- Added `maxVwSpacing` and `vwSpacingStep` options that default to `1` and `0.25` respectively
+- Added `maxVhSpacing` and `vhSpacingStep` options that default to `1` and `0.25` respectively
+- Added `maxAspectRatioDenominator` and `maxAspectRatioNumerator` options that both default to `20`
+- Added `maxTranslateDenominator` and `maxTranslateNumerator` options that both default to `4`
+- Added a `gapStep` option that defaults to `5`
+- Added a `opacityStep` option that defaults to `5`
+- Added a `zIndexStep` option that defaults to `10`
+- Added a `textIndentStep` option that defaults to `1`
+- Added a `maxColumnCount` option that defaults to `5`
+- Added a `columnGapStep` option that defaults to `5`
+- Added a `transitionDurationStep` option that defaults to `250`
+- Added `maxTransitionDelay` and `transitionDelayStep` options that default to `2000` and `250` respectively
+- Added a `minScale` option that defaults to `-100`
+- Added a `scaleStep` option that defaults to `5`
+- Added a `rotateStep` option that defaults to `45`
+
+### Changed
+- Changed the default value of `rootFontSize` from `16` to `1`
+- Removed all the options that were theme objects (e.g. `screens`, `colors`, `fonts`, etc.) in favor of the new `theme` and `extendTheme` options
+- Removed the `maxGridSizeBeforeSkipping` option in favor of `maxGridSpacing`
+- Removed the `maxGridSize` option in favor of separate `maxWidth`, `maxHeight`, `maxMinWidth`, `maxMinHeight`, `maxMaxWidth`, `maxMaxHeight`, `maxPadding`, and `maxMargin` options
+- Removed the `gridSizeStepAfterSkipping` option in favor of `widthStep`, `heightStep`, `minWidthStep`, `minHeightStep`, etc.
+- Renamed the `maxPxSize` option to `maxPxSpacing`
+- Renamed the `maxDenominator` option to `maxPercentageDenominator`
+- Renamed the `maxNumerator` option to `maxPercentageNumerator` and changed its default value from `6` to `12`
+- Changed the default value of `maxBorderWidth` from `16` to `20`
+- Gap utilities are now generated based on the common spacing values in addition to `maxGap`’s value (which now defaults to `null`)
+- Changed the default value of `maxOrder` from `5` to `12`
+- Renamed the `maxIndent` option to `maxTextIndent`
+- Changed the default value of `maxColumnGap` from `100` to `200`
+- Renamed the `allVariants` option to `defaultVariants`
+- Removed the `modules` option in favor of `variants` and `corePlugins`
+- Removed the `tailwindOptions` option in favor of `prefix`, `important`, and `separator`
+- Renamed the `xxs` screen to `2xs`
+- Changed all the screen values; screens `sm` to `xl` now use Tailwind’s default values
+- Changed the default border color from `black` to `currentColor`
+- Changed `*-current-color` classes (e.g. `bg-current-color`) to `*-current`
+- Changed the `*-em` classes (e.g. `w-em`) to `*-1em`
+- Changed the `*-screen` classes and `*-screen-1/2` classes to `*-1vw` / `*-1vh` and `*-1/2vw` / `*-1/2vh`, respectively
+
+### Removed
+- Removed the `maxDenominatorDifference` and `extraPercentages` options
+- Removed the `maxFixedPxSize` option
+- Removed the `regular` font weight, there are no font weights by default anymore
+- Removed the `tight` and `loose` leadings
+- Removed the `tight` and `wide` trackings
+
 ## [1.2.9] - 2019-04-03
 
 ### Changed
@@ -154,7 +206,7 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 ### Fixed
 - Fixed escaping in some selectors
 
-## 1.0.0 - 2018-08-13
+## [1.0.0] - 2018-08-13
 
 Initial release
 
@@ -180,3 +232,4 @@ Initial release
 [1.0.3]: https://github.com/benface/tailwindcss-config/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/benface/tailwindcss-config/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/benface/tailwindcss-config/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/benface/tailwindcss-config/releases/tag/v1.0.0
