@@ -31,7 +31,7 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 ## [2.0.0-beta.1] - 2019-07-10
 
 ### Added
-- Tailwind 1.0.0 compatibility
+- Tailwind 1.0 compatibility
 - Added `maxEmSpacing` and `emSpacingStep` options that default to `2` and `0.25` respectively
 - Added `maxVwSpacing` and `vwSpacingStep` options that default to `1` and `0.25` respectively
 - Added `maxVhSpacing` and `vhSpacingStep` options that default to `1` and `0.25` respectively
@@ -78,6 +78,7 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 - The reset and the root font size are now included in the generated CSS, no need to import/specify them manually
 
 ### Removed
+- Removed the deprecated `tailwindcss-list-style` plugin
 - Removed the `maxDenominatorDifference` and `extraPercentages` options
 - Removed the `maxFixedPxSize` option
 - Removed the `components`, `utilities`, and `utilityVariants` options
