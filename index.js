@@ -103,11 +103,8 @@ module.exports = ({
   } = {}) => {
     return _.fromPairs(
       _.range(start, end + step, step).map(value => {
-        let key = value;
-        if (Math.round(key) !== key) {
-          key = num2fraction(key);
-        }
-        if (unit && includeUnitInKey) {
+        let key = Math.round(value) === value ? value : num2fraction(value);
+        if (unit && includeUnitInKey && value !== 0) {
           key += unit;
         }
         value *= multiplyValueBy;
@@ -118,7 +115,7 @@ module.exports = ({
           }
           value = pxToRem(value);
         }
-        else if (unit) {
+        else if (unit && (value !== 0 || ['s', 'ms'].includes(unit))) {
           value += unit;
         }
         return [key, value];
@@ -151,6 +148,12 @@ module.exports = ({
     ...negativeFunction(positiveValues),
   });
 
+  const gridSpacing = range(0, maxGridSpacing, { unit: 'grid' });
+  const pxSpacing = range(0, maxPxSpacing, { step: pxSpacingStep, unit: 'px', includeUnitInKey: true });
+  const emSpacing = range(0, maxEmSpacing, { step: emSpacingStep, unit: 'em', includeUnitInKey: true });
+  const vwSpacing = range(0, maxVwSpacing, { step: vwSpacingStep, unit: 'vw', includeUnitInKey: true });
+  const vhSpacing = range(0, maxVhSpacing, { step: vhSpacingStep, unit: 'vh', includeUnitInKey: true });
+
   return {
     prefix,
     important,
@@ -170,11 +173,11 @@ module.exports = ({
       },
 
       spacing: {
-        ...range(0, maxGridSpacing, { unit: 'grid' }),
-        ...range(pxSpacingStep, maxPxSpacing, { step: pxSpacingStep, unit: 'px', includeUnitInKey: true }),
-        ...range(emSpacingStep, maxEmSpacing, { step: emSpacingStep, unit: 'em', includeUnitInKey: true }),
-        ...range(vwSpacingStep, maxVwSpacing, { step: vwSpacingStep, unit: 'vw', includeUnitInKey: true }),
-        ...range(vhSpacingStep, maxVhSpacing, { step: vhSpacingStep, unit: 'vh', includeUnitInKey: true }),
+        ...gridSpacing,
+        ...pxSpacing,
+        ...emSpacing,
+        ...vwSpacing,
+        ...vhSpacing,
       },
 
       percentages: {
@@ -342,6 +345,8 @@ module.exports = ({
 
       textIndent: {
         ...range(0, maxTextIndent, { step: textIndentStep, unit: 'grid' }),
+        ...pxSpacing,
+        ...emSpacing,
       },
 
       textShadow: {
@@ -355,6 +360,9 @@ module.exports = ({
 
       columnGap: {
         ...range(0, maxColumnGap, { step: columnGapStep, unit: 'grid' }),
+        ...pxSpacing,
+        // TODO: uncomment the following line when this issue is fixed: https://github.com/hacknug/tailwindcss-multi-column/issues/3
+        //...emSpacing,
       },
 
       gap: theme => ({
@@ -370,6 +378,24 @@ module.exports = ({
       linearGradients: theme => ({
         colors: theme('colors'),
       }),
+
+      transitionProperty: {
+        'none': 'none',
+        'all': 'all',
+        'color': 'color',
+        'bg': 'background-color',
+        'border': 'border-color',
+        'colors': ['color', 'background-color', 'border-color'],
+        'opacity': 'opacity',
+        'transform': 'transform',
+        'shadow': 'box-shadow',
+        'margin': 'margin',
+        'width': 'width',
+        'height': 'height',
+        'padding': 'padding',
+        'border-width': 'border-width',
+        'box': ['margin', 'width', 'height', 'padding', 'border-width'],
+      },
 
       transitionDuration: {
         '0': '0ms',
@@ -409,6 +435,18 @@ module.exports = ({
         },
         'down': {
           direction: 'down',
+        },
+        'left-up': {
+          direction: 'left-up',
+        },
+        'left-down': {
+          direction: 'left-down',
+        },
+        'right-up': {
+          direction: 'right-up',
+        },
+        'right-down': {
+          direction: 'right-down',
         },
       },
 

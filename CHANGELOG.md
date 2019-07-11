@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0-beta.3] - 2019-07-10
+
+### Added
+- Added more transition property utilities
+- Added more triangle components
+
+### Changed
+- Text indent and column gap utilities are now also generated in the `px` and `em` scales
+
 ## [2.0.0-beta.2] - 2019-07-10
 
 ### Added
@@ -53,7 +62,7 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 - Renamed the `maxDenominator` option to `maxPercentageDenominator`
 - Renamed the `maxNumerator` option to `maxPercentageNumerator` and changed its default value from `6` to `12`
 - Changed the default value of `maxBorderWidth` from `16` to `20`
-- Gap utilities are now generated based on the common spacing values in addition to `maxGap`’s value (which now defaults to `null`)
+- Gap utilities are now generated in the grid scale in addition to using `maxGap` (which now defaults to `null`) and `gapStep`
 - Changed the default value of `maxOrder` from `5` to `12`
 - Renamed the `maxIndent` option to `maxTextIndent`
 - Changed the default value of `maxColumnGap` from `100` to `200`
@@ -229,7 +238,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.2...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.3...HEAD
+[2.0.0-beta.3]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.2...v2.0.0-beta.3
 [2.0.0-beta.2]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.1...v2.0.0-beta.2
 [2.0.0-beta.1]: https://github.com/benface/tailwindcss-config/compare/v1.2.9...v2.0.0-beta.1
 [1.2.9]: https://github.com/benface/tailwindcss-config/compare/v1.2.8...v1.2.9
