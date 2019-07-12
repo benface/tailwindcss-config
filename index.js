@@ -361,8 +361,7 @@ module.exports = ({
       columnGap: {
         ...range(0, maxColumnGap, { step: columnGapStep, unit: 'grid' }),
         ...pxSpacing,
-        // TODO: uncomment the following line when this issue is fixed: https://github.com/hacknug/tailwindcss-multi-column/issues/3
-        //...emSpacing,
+        ...emSpacing,
       },
 
       gap: theme => ({
