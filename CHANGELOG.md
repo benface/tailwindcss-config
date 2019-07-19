@@ -5,10 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0-beta.4] - 2019-07-19
 
 ### Added
 - Added a `minZIndex` option that defaults to `-10`, adding a `-z-10` utility
+- Added a `bg-fill` utility (`background-size: 100% 100%`)
 
 ### Changed
 - Added `group-focus` and `group-active` to the default variants
@@ -247,7 +248,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.3...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.4...HEAD
+[2.0.0-beta.4]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.3...v2.0.0-beta.4
 [2.0.0-beta.3]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.2...v2.0.0-beta.3
 [2.0.0-beta.2]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.1...v2.0.0-beta.2
 [2.0.0-beta.1]: https://github.com/benface/tailwindcss-config/compare/v1.2.9...v2.0.0-beta.1

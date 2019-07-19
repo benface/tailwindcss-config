@@ -331,6 +331,13 @@ module.exports = ({
         ...range(minZIndex, maxZIndex, { step: zIndexStep }),
       },
 
+      backgroundSize: {
+        'auto': 'auto',
+        'cover': 'cover',
+        'contain': 'contain',
+        'fill': '100% 100%',
+      },
+
       listStyleType: {
         'none': 'none',
         'disc': 'disc',
