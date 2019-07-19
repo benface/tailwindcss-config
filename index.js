@@ -81,7 +81,7 @@ module.exports = ({
   enable3dTransforms = true,
   enableReset = true,
 
-  defaultVariants = ['responsive', 'hover', 'group-hover', 'active', 'focus'],
+  defaultVariants = ['responsive', 'hover', 'group-hover', 'focus', 'group-focus', 'active', 'group-active'],
   
   prefix = '',
   important = false,

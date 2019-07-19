@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@benface/tailwindcss-reset": "^1.0.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "num2fraction": "^1.2.2",
     "tailwindcss-accessibility": "^1.0.0",
     "tailwindcss-aspect-ratio": "^2.0.0",
