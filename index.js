@@ -59,6 +59,7 @@ module.exports = ({
   maxFlexShrink = 5,
   maxOrder = 12,
   opacityStep = 5,
+  minZIndex = -10,
   maxZIndex = 100,
   zIndexStep = 10,
 
@@ -327,7 +328,7 @@ module.exports = ({
 
       zIndex: {
         'auto': 'auto',
-        ...range(0, maxZIndex, { step: zIndexStep }),
+        ...range(minZIndex, maxZIndex, { step: zIndexStep }),
       },
 
       listStyleType: {

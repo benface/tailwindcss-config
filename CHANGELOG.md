@@ -7,6 +7,9 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 ## [Unreleased]
 
+### Added
+- Added a `minZIndex` option that defaults to `-10`, adding a `-z-10` utility
+
 ### Changed
 - Added `group-focus` and `group-active` to the default variants
 
