@@ -84,7 +84,7 @@ module.exports = ({
   defaultVariants = ['responsive', 'hover', 'group-hover', 'focus', 'group-focus', 'active', 'group-active'],
   
   prefix = '',
-  important = false,
+  important = '#a',
   separator = ':',
   theme = {},
   extendTheme = {},
