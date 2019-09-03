@@ -8,10 +8,11 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 ## [Unreleased]
 
 ### Changed
+- The root `font-size` is now declared in `rem` instead of `px` to take the user’s preferred font size into account
 - Updated dependencies
 
 ### Removed
-- Removed the `tailwindcss-accessibility` plugin since screen reader utilities are now built in to Tailwind
+- Removed the `tailwindcss-accessibility` plugin since screen reader utilities are now built into Tailwind
 
 ## [2.0.0-beta.4] - 2019-07-19
 

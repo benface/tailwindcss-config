@@ -594,7 +594,7 @@ module.exports = ({
       function({ addBase }) {
         addBase({
           'html': {
-            fontSize: `${rootFontSize}px`,
+            fontSize: `calc(${rootFontSize / 16}rem)`,
           },
         });
       },
