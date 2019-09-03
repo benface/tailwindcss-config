@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- Updated dependencies
+
+### Removed
+- Removed the `tailwindcss-accessibility` plugin since screen reader utilities are now built in to Tailwind
+
 ## [2.0.0-beta.4] - 2019-07-19
 
 ### Added
@@ -175,11 +183,11 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 - Added 45-degree rotation increments
 - Added `current-color` to the list of gradient colors
 
-### Removed
-- Removed the `tailwindcss-object-fit` and `tailwindcss-object-position` plugins since they were deprecated
-
 ### Changed
 - Multiple reset improvements
+
+### Removed
+- Removed the `tailwindcss-object-fit` and `tailwindcss-object-position` plugins since they were deprecated
 
 ## [1.1.7] - 2018-12-14
 

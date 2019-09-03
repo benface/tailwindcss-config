@@ -11,7 +11,6 @@ const transitionsPlugin = require('tailwindcss-transitions');
 const transformsPlugin = require('tailwindcss-transforms');
 const filtersPlugin = require('tailwindcss-filters');
 const blendModePlugin = require('tailwindcss-blend-mode');
-const accessibilityPlugin = require('tailwindcss-accessibility');
 const fluidContainerPlugin = require('tailwindcss-fluid-container');
 const trianglesPlugin = require('tailwindcss-triangles');
 const interactionVariantsPlugin = require('tailwindcss-interaction-variants');
@@ -463,6 +462,7 @@ module.exports = ({
     },
 
     variants: {
+      accessibility: ['responsive'],
       alignContent: defaultVariants,
       alignItems: defaultVariants,
       alignSelf: defaultVariants,
@@ -511,6 +511,7 @@ module.exports = ({
       outline: defaultVariants,
       overflow: defaultVariants,
       padding: ['responsive'],
+      placeholderColor: defaultVariants,
       pointerEvents: defaultVariants,
       position: defaultVariants,
       resize: defaultVariants,
@@ -530,9 +531,12 @@ module.exports = ({
 
       textIndent: ['responsive'],
       textShadow: defaultVariants,
-      ellipsis: defaultVariants,
-      hyphens: defaultVariants,
-      textUnset: defaultVariants,
+      ellipsis: ['responsive'],
+      hyphens: ['responsive'],
+      textUnset: ['responsive'],
+      caps: ['responsive'],
+      nums: ['responsive'],
+      ligatures: ['responsive'],
 
       columnCount: ['responsive'],
       columnGap: ['responsive'],
@@ -618,8 +622,6 @@ module.exports = ({
       filtersPlugin(),
 
       blendModePlugin(),
-
-      accessibilityPlugin,
 
       fluidContainerPlugin(),
 

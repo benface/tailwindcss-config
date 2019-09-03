@@ -12,27 +12,26 @@
     "release": "f(){ release-it $1 && github-release-from-changelog ;};f"
   },
   "dependencies": {
-    "@benface/tailwindcss-reset": "^1.0.0",
+    "@benface/tailwindcss-reset": "^1.0.1",
     "lodash": "^4.17.15",
     "num2fraction": "^1.2.2",
-    "tailwindcss-accessibility": "^1.0.0",
     "tailwindcss-aspect-ratio": "^2.0.0",
     "tailwindcss-blend-mode": "^1.0.0",
-    "tailwindcss-children": "^1.1.0",
+    "tailwindcss-children": "^1.2.0",
     "tailwindcss-filters": "^2.0.0",
-    "tailwindcss-fluid-container": "^2.0.0",
+    "tailwindcss-fluid-container": "^2.1.0",
     "tailwindcss-gap": "^3.1.1",
-    "tailwindcss-gradients": "^2.3.0",
-    "tailwindcss-interaction-variants": "^2.1.0",
+    "tailwindcss-gradients": "^2.3.1",
+    "tailwindcss-interaction-variants": "^2.2.0",
     "tailwindcss-multi-column": "^1.0.2",
     "tailwindcss-transforms": "^2.2.0",
     "tailwindcss-transitions": "^2.0.1",
     "tailwindcss-triangles": "^2.1.0",
-    "tailwindcss-typography": "^2.1.1"
+    "tailwindcss-typography": "^2.2.0"
   },
   "devDependencies": {
     "github-release-from-changelog": "^1.3.2",
-    "release-it": "^12.3.3",
-    "tailwindcss": "1.0.5"
+    "release-it": "^12.3.6",
+    "tailwindcss": "1.1.2"
   }
 }
