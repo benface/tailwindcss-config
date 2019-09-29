@@ -7,8 +7,9 @@ const multiColumnPlugin = require('tailwindcss-multi-column');
 const gapPlugin = require('tailwindcss-gap');
 const aspectRatioPlugin = require('tailwindcss-aspect-ratio');
 const gradientsPlugin = require('tailwindcss-gradients');
-const transitionsPlugin = require('tailwindcss-transitions');
 const transformsPlugin = require('tailwindcss-transforms');
+const transitionsPlugin = require('tailwindcss-transitions');
+const animationsPlugin = require('tailwindcss-animations');
 const filtersPlugin = require('tailwindcss-filters');
 const blendModePlugin = require('tailwindcss-blend-mode');
 const fluidContainerPlugin = require('tailwindcss-fluid-container');
@@ -70,15 +71,21 @@ module.exports = ({
   maxGap = null,
   gapStep = 5,
   gapLegacy = false,
-  maxTransitionDuration = 2000,
-  transitionDurationStep = 250,
-  maxTransitionDelay = 2000,
-  transitionDelayStep = 250,
   minScale = -100,
   maxScale = 200,
   scaleStep = 5,
   rotateStep = 45,
   enable3dTransforms = true,
+  defaultTransitionDuration = 250,
+  maxTransitionDuration = 2000,
+  transitionDurationStep = 250,
+  maxTransitionDelay = 2000,
+  transitionDelayStep = 250,
+  defaultAnimationDuration = 1000,
+  maxAnimationDuration = 5000,
+  animationDurationStep = 250,
+  maxAnimationDelay = 2000,
+  animationDelayStep = 250,
   enableReset = true,
 
   defaultVariants = ['responsive', 'hover', 'group-hover', 'focus', 'group-focus', 'active', 'group-active'],
@@ -385,6 +392,22 @@ module.exports = ({
         colors: theme('colors'),
       }),
 
+      translate: (theme, { negative }) => ({
+        '0': '0',
+        ...andNegative(negative, {
+          'full': '100%',
+          ..._.mapValues(fractions(maxTranslateDenominator, maxTranslateNumerator), value => `${value * 100}%`),
+        }),
+      }),
+
+      scale: {
+        ...range(minScale, maxScale, { step: scaleStep, divideValueBy: 100 }),
+      },
+
+      rotate: {
+        ...range(0, 360 - rotateStep, { step: rotateStep, unit: 'deg' }),
+      },
+
       transitionProperty: {
         'none': 'none',
         'all': 'all',
@@ -404,29 +427,29 @@ module.exports = ({
       },
 
       transitionDuration: {
-        '0': '0ms',
-        'default': `${transitionDurationStep}ms`,
-        ...range(transitionDurationStep * 2, maxTransitionDuration, { step: transitionDurationStep, unit: 'ms' }),
+        'default': `${defaultTransitionDuration}ms`,
+        ...range(0, maxTransitionDuration, { step: transitionDurationStep, unit: 'ms' }),
       },
 
       transitionDelay: {
         ...range(0, maxTransitionDelay, { step: transitionDelayStep, unit: 'ms' }),
       },
 
-      translate: (theme, { negative }) => ({
-        '0': '0',
-        ...andNegative(negative, {
-          'full': '100%',
-          ..._.mapValues(fractions(maxTranslateDenominator, maxTranslateNumerator), value => `${value * 100}%`),
-        }),
-      }),
-
-      scale: {
-        ...range(minScale, maxScale, { step: scaleStep, divideValueBy: 100 }),
+      animationDuration: {
+        'default': `${defaultAnimationDuration}ms`,
+        ...range(0, maxAnimationDuration, { step: animationDurationStep, unit: 'ms' }),
       },
 
-      rotate: {
-        ...range(0, 360 - rotateStep, { step: rotateStep, unit: 'deg' }),
+      animationDelay: {
+        ...range(0, maxAnimationDelay, { step: animationDelayStep, unit: 'ms' }),
+      },
+
+      animationFillMode: {
+        'default': 'both',
+        'none': 'none',
+        'forwards': 'forwards',
+        'backwards': 'backwards',
+        'both': 'both',
       },
 
       triangles: {
@@ -613,11 +636,13 @@ module.exports = ({
 
       gradientsPlugin(),
 
-      transitionsPlugin(),
-
       transformsPlugin({
         '3d': enable3dTransforms,
       }),
+
+      transitionsPlugin(),
+
+      animationsPlugin(),
 
       filtersPlugin(),
 

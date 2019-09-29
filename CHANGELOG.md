@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2019-09-29
+
+### Added
+- Added the `tailwindcss-animations` plugin along with the `defaultAnimationDuration`, `maxAnimationDuration`, `animationDurationStep`, `maxAnimationDelay`, and `animationDelayStep` options
+- Added a `defaultTransitionDuration` option that defaults to `250`
+
 ## [2.0.0-beta.5] - 2019-09-02
 
 ### Changed
@@ -258,7 +264,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.5...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.5...v2.0.0
 [2.0.0-beta.5]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.4...v2.0.0-beta.5
 [2.0.0-beta.4]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.3...v2.0.0-beta.4
 [2.0.0-beta.3]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.2...v2.0.0-beta.3
