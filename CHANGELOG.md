@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2019-10-01
+
+### Fixed
+- Changed the default value of `rootFontSize` from `1` to `100` to prevent layout issues when Chrome’s and Safari’s “minimum font size” setting is used
+
 ## [2.0.0] - 2019-09-29
 
 ### Added
@@ -264,7 +269,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/benface/tailwindcss-config/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.5...v2.0.0
 [2.0.0-beta.5]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.4...v2.0.0-beta.5
 [2.0.0-beta.4]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.3...v2.0.0-beta.4

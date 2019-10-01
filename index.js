@@ -18,7 +18,7 @@ const interactionVariantsPlugin = require('tailwindcss-interaction-variants');
 const childrenPlugin = require('tailwindcss-children');
 
 module.exports = ({
-  rootFontSize = 1,
+  rootFontSize = 100,
 
   gridResolution = 1,
   maxGridSpacing = 400,
