@@ -39,6 +39,7 @@ module.exports = ({
   maxTranslateNumerator = 4,
 
   maxBorderWidth = 20,
+  borderWidthStep = 1,
   maxWidth = 1280,
   widthStep = 5,
   maxHeight = 800,
@@ -101,8 +102,7 @@ module.exports = ({
 } = {}) => {
   const pxToRem = valueInPx => (valueInPx / rootFontSize) + (valueInPx !== 0 ? 'rem' : '');
 
-  const range = (start, end, {
-    step = 1,
+  const range = (start, end, step = 1, {
     unit = null,
     includeUnitInKey = false,
     multiplyValueBy = 1,
@@ -130,6 +130,13 @@ module.exports = ({
     );
   };
 
+  const gridRange = (start, end, step = 1) => {
+    start = Math.ceil(start / gridResolution);
+    end = Math.ceil(end / gridResolution);
+    step = Math.ceil(step / gridResolution);
+    return range(start, end, step, { unit: 'grid' });
+  };
+
   const rangeArray = (start, end, { step = 1 } = {}) => _.range(start, end + 1, step);
 
   const fractions = (maxDenominator, maxNumerator) => {
@@ -155,11 +162,11 @@ module.exports = ({
     ...negativeFunction(positiveValues),
   });
 
-  const gridSpacing = range(0, maxGridSpacing, { unit: 'grid' });
-  const pxSpacing = range(0, maxPxSpacing, { step: pxSpacingStep, unit: 'px', includeUnitInKey: true });
-  const emSpacing = range(0, maxEmSpacing, { step: emSpacingStep, unit: 'em', includeUnitInKey: true });
-  const vwSpacing = range(0, maxVwSpacing, { step: vwSpacingStep, unit: 'vw', includeUnitInKey: true });
-  const vhSpacing = range(0, maxVhSpacing, { step: vhSpacingStep, unit: 'vh', includeUnitInKey: true });
+  const gridSpacing = gridRange(0, maxGridSpacing);
+  const pxSpacing = range(0, maxPxSpacing, pxSpacingStep, { unit: 'px', includeUnitInKey: true });
+  const emSpacing = range(0, maxEmSpacing, emSpacingStep, { unit: 'em', includeUnitInKey: true });
+  const vwSpacing = range(0, maxVwSpacing, vwSpacingStep, { unit: 'vw', includeUnitInKey: true });
+  const vhSpacing = range(0, maxVhSpacing, vhSpacingStep, { unit: 'vh', includeUnitInKey: true });
 
   return {
     prefix,
@@ -234,7 +241,7 @@ module.exports = ({
       borderWidth: {
         '0': '0',
         'default': pxToRem(1),
-        ...range(2, maxBorderWidth, { unit: 'px' }),
+        ...range(2, maxBorderWidth, borderWidthStep, { unit: 'px' }),
       },
 
       borderColor: theme => ({
@@ -251,26 +258,26 @@ module.exports = ({
       width: theme => ({
         'auto': 'auto',
         ...theme('spacing'),
-        ...range(0, maxWidth, { step: widthStep, unit: 'grid' }),
+        ...gridRange(0, maxWidth, widthStep),
         ...theme('percentages'),
       }),
 
       height: theme => ({
         'auto': 'auto',
         ...theme('spacing'),
-        ...range(0, maxHeight, { step: heightStep, unit: 'grid' }),
+        ...gridRange(0, maxHeight, heightStep),
         ...theme('percentages'),
       }),
 
       minWidth: theme => ({
         ...theme('spacing'),
-        ...range(0, maxMinWidth, { step: minWidthStep, unit: 'grid' }),
+        ...gridRange(0, maxMinWidth, minWidthStep),
         ...theme('percentages'),
       }),
 
       minHeight: theme => ({
         ...theme('spacing'),
-        ...range(0, maxMinHeight, { step: minHeightStep, unit: 'grid' }),
+        ...gridRange(0, maxMinHeight, minHeightStep),
         ...theme('percentages'),
       }),
 
@@ -278,27 +285,27 @@ module.exports = ({
         'none': 'none',
         ...theme('screens'),
         ...theme('spacing'),
-        ...range(0, maxMaxWidth, { step: maxWidthStep, unit: 'grid' }),
+        ...gridRange(0, maxMaxWidth, maxWidthStep),
         ...theme('percentages'),
       }),
 
       maxHeight: theme => ({
         'none': 'none',
         ...theme('spacing'),
-        ...range(0, maxMaxHeight, { step: maxHeightStep, unit: 'grid' }),
+        ...gridRange(0, maxMaxHeight, maxHeightStep),
         ...theme('percentages'),
       }),
 
       padding: theme => ({
         ...theme('spacing'),
-        ...range(0, maxPadding, { step: paddingStep, unit: 'grid' }),
+        ...gridRange(0, maxPadding, paddingStep),
       }),
 
       margin: (theme, { negative }) => ({
         'auto': 'auto',
         ...andNegative(negative, {
           ...theme('spacing'),
-          ...range(0, maxMargin, { step: marginStep, unit: 'grid' }),
+          ...gridRange(0, maxMargin, marginStep),
           ...theme('percentages'),
         }),
       }),
@@ -329,12 +336,12 @@ module.exports = ({
       },
 
       opacity: {
-        ...range(0, 100, { step: opacityStep, divideValueBy: 100 }),
+        ...range(0, 100, opacityStep, { divideValueBy: 100 }),
       },
 
       zIndex: {
         'auto': 'auto',
-        ...range(minZIndex, maxZIndex, { step: zIndexStep }),
+        ...range(minZIndex, maxZIndex, zIndexStep),
       },
 
       backgroundSize: {
@@ -358,7 +365,7 @@ module.exports = ({
       },
 
       textIndent: {
-        ...range(0, maxTextIndent, { step: textIndentStep, unit: 'grid' }),
+        ...gridRange(0, maxTextIndent, textIndentStep),
         ...pxSpacing,
         ...emSpacing,
       },
@@ -373,14 +380,14 @@ module.exports = ({
       ],
 
       columnGap: {
-        ...range(0, maxColumnGap, { step: columnGapStep, unit: 'grid' }),
+        ...gridRange(0, maxColumnGap, columnGapStep),
         ...pxSpacing,
         ...emSpacing,
       },
 
       gap: theme => ({
         ...theme('spacing'),
-        ...range(0, maxGap, { step: gapStep, unit: 'grid' }),
+        ...gridRange(0, maxGap, gapStep),
       }),
 
       aspectRatio: {
@@ -401,11 +408,11 @@ module.exports = ({
       }),
 
       scale: {
-        ...range(minScale, maxScale, { step: scaleStep, divideValueBy: 100 }),
+        ...range(minScale, maxScale, scaleStep, { divideValueBy: 100 }),
       },
 
       rotate: {
-        ...range(0, 360 - rotateStep, { step: rotateStep, unit: 'deg' }),
+        ...range(0, 360 - rotateStep, rotateStep, { unit: 'deg' }),
       },
 
       transitionProperty: {
@@ -428,20 +435,20 @@ module.exports = ({
 
       transitionDuration: {
         'default': `${defaultTransitionDuration}ms`,
-        ...range(0, maxTransitionDuration, { step: transitionDurationStep, unit: 'ms' }),
+        ...range(0, maxTransitionDuration, transitionDurationStep, { unit: 'ms' }),
       },
 
       transitionDelay: {
-        ...range(0, maxTransitionDelay, { step: transitionDelayStep, unit: 'ms' }),
+        ...range(0, maxTransitionDelay, transitionDelayStep, { unit: 'ms' }),
       },
 
       animationDuration: {
         'default': `${defaultAnimationDuration}ms`,
-        ...range(0, maxAnimationDuration, { step: animationDurationStep, unit: 'ms' }),
+        ...range(0, maxAnimationDuration, animationDurationStep, { unit: 'ms' }),
       },
 
       animationDelay: {
-        ...range(0, maxAnimationDelay, { step: animationDelayStep, unit: 'ms' }),
+        ...range(0, maxAnimationDelay, animationDelayStep, { unit: 'ms' }),
       },
 
       animationFillMode: {

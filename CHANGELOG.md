@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2019-11-10
+
+### Added
+- Added a `borderWidthStep` option that defaults to `1`
+
+### Changed
+- The following options now take the value of `gridResolution` into account: `maxGridSpacing` (meaning the default value of `400` effectively becomes `100` when `gridResolution` is set to `4`), `maxWidth`, `widthStep`, `maxHeight`, `heightStep`, `maxMinWidth`, `minWidthStep`, `maxMinHeight`, `minHeightStep`, `maxMaxWidth`, `maxWidthStep`, `maxMaxHeight`, `maxHeightStep`, `maxPadding`, `paddingStep`, `maxMargin`, `marginStep`, `maxTextIndent`, `textIndentStep`, `maxColumnGap`, `columnGapStep`, `maxGap`, and `gapStep`
+
 ## [2.0.1] - 2019-10-01
 
 ### Fixed
@@ -269,7 +277,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/benface/tailwindcss-config/compare/v2.0.1...v2.1.0
 [2.0.1]: https://github.com/benface/tailwindcss-config/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.5...v2.0.0
 [2.0.0-beta.5]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.4...v2.0.0-beta.5
