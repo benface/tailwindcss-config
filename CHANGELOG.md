@@ -7,6 +7,9 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 ## [Unreleased]
 
+### Changed
+- Changed the default value of `maxFlexGrow` and `maxFlexShrink` from `5` to `10`
+
 ### Removed
 - Removed the `normal` font weight; once again, there are no font weights by default
 
