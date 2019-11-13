@@ -217,7 +217,6 @@ module.exports = ({
       },
 
       fontWeight: {
-        'normal': '400',
       },
 
       fontSize: {
