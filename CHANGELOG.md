@@ -5,13 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.1.1] - 2019-11-13
 
 ### Changed
 - Changed the default value of `maxFlexGrow` and `maxFlexShrink` from `5` to `10`
 
 ### Removed
 - Removed the `normal` font weight; once again, there are no font weights by default
+
+### Fixed
+- Fixed an issue where a `gridResolution` greater than `1` would not generate all the expected utilities
 
 ## [2.1.0] - 2019-11-10
 
@@ -285,7 +288,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.1.1...HEAD
+[2.1.1]: https://github.com/benface/tailwindcss-config/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/benface/tailwindcss-config/compare/v2.0.1...v2.1.0
 [2.0.1]: https://github.com/benface/tailwindcss-config/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/benface/tailwindcss-config/compare/v2.0.0-beta.5...v2.0.0

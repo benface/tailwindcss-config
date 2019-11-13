@@ -133,7 +133,7 @@ module.exports = ({
   const gridRange = (start, end, step = 1) => {
     start = Math.ceil(start / gridResolution);
     end = Math.ceil(end / gridResolution);
-    step = Math.ceil(step / gridResolution);
+    step = Math.max(Math.floor(step / gridResolution), 1);
     return range(start, end, step, { unit: 'grid' });
   };
 
