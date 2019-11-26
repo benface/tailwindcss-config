@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- Changed the default value of `maxPercentageDenominator` and `maxPercentageNumerator` from `12` to `16`
+- Changed the default value of `maxFlexGrow` and `maxFlexShrink` from `10` to `12`
+- Changed the default value of `transitionDurationStep` and `animationDurationStep` from `250` to `50`
+- Changed the `ellipsis`, `hyphens`, `textUnset`, `caps`, `nums`, `ligatures`, `fluidContainer`, and `triangles` utilities to use the `defaultVariants` by default rather than only the responsive variant
+
 ## [2.1.1] - 2019-11-13
 
 ### Changed
