@@ -5,7 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.2.0] - 2019-11-26
+
+### Added
+- Added an `extendVariants` option
 
 ### Changed
 - Changed the default value of `maxPercentageDenominator` and `maxPercentageNumerator` from `12` to `16`
@@ -296,7 +299,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.1.1...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/benface/tailwindcss-config/compare/v2.1.1...v2.2.0
 [2.1.1]: https://github.com/benface/tailwindcss-config/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/benface/tailwindcss-config/compare/v2.0.1...v2.1.0
 [2.0.1]: https://github.com/benface/tailwindcss-config/compare/v2.0.0...v2.0.1

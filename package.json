@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@benface/tailwindcss-reset": "^1.0.2",
+    "deepmerge": "^4.2.2",
     "lodash": "^4.17.15",
     "num2fraction": "^1.2.2",
     "tailwindcss-animations": "^1.0.0",

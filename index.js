@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const deepmerge = require('deepmerge');
 const num2fraction = require('num2fraction');
 const defaultTheme = require('tailwindcss/defaultTheme');
 const resetPlugin = require('@benface/tailwindcss-reset');
@@ -97,6 +98,7 @@ module.exports = ({
   theme = {},
   extendTheme = {},
   variants = {},
+  extendVariants = {},
   corePlugins = {},
   plugins = [],
 } = {}) => {
@@ -490,7 +492,7 @@ module.exports = ({
       extend: extendTheme,
     },
 
-    variants: {
+    variants: deepmerge({
       accessibility: ['responsive'],
       alignContent: defaultVariants,
       alignItems: defaultVariants,
@@ -612,7 +614,7 @@ module.exports = ({
       triangles: defaultVariants,
 
       ...variants,
-    },
+    }, extendVariants),
 
     corePlugins: {
       container: false,
