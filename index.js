@@ -78,12 +78,10 @@ module.exports = ({
   scaleStep = 5,
   rotateStep = 45,
   enable3dTransforms = true,
-  defaultTransitionDuration = 250,
   maxTransitionDuration = 2000,
   transitionDurationStep = 50,
   maxTransitionDelay = 2000,
   transitionDelayStep = 250,
-  defaultAnimationDuration = 1000,
   maxAnimationDuration = 5000,
   animationDurationStep = 50,
   maxAnimationDelay = 2000,
@@ -435,7 +433,7 @@ module.exports = ({
       },
 
       transitionDuration: {
-        'default': `${defaultTransitionDuration}ms`,
+        'default': `250ms`,
         ...range(0, maxTransitionDuration, transitionDurationStep, { unit: 'ms' }),
       },
 
@@ -444,7 +442,7 @@ module.exports = ({
       },
 
       animationDuration: {
-        'default': `${defaultAnimationDuration}ms`,
+        'default': `1000ms`,
         ...range(0, maxAnimationDuration, animationDurationStep, { unit: 'ms' }),
       },
 
