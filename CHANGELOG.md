@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.2] - 2019-11-29
+
+### Added
+- Added `maxVwDenominator` and `maxVhDenominator` options that both default to `4`
+
+### Removed
+- Removed the `maxVwSpacing`, `vwSpacingStep`, `maxVhSpacing`, and `vhSpacingStep` options
+
+### Fixed
+- Fixed utilities that used `vw` and `vh` units (`1/2vw` now correctly translates to `50vw` instead of `0.5vw` which is 5/1000th of the view width)
+
 ## [2.2.1] - 2019-11-27
 
 ### Removed
@@ -304,7 +315,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.1...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.2...HEAD
+[2.2.2]: https://github.com/benface/tailwindcss-config/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/benface/tailwindcss-config/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/benface/tailwindcss-config/compare/v2.1.1...v2.2.0
 [2.1.1]: https://github.com/benface/tailwindcss-config/compare/v2.1.0...v2.1.1

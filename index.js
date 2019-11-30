@@ -27,11 +27,8 @@ module.exports = ({
   pxSpacingStep = 1,
   maxEmSpacing = 2,
   emSpacingStep = 0.25,
-  maxVwSpacing = 1,
-  vwSpacingStep = 0.25,
-  maxVhSpacing = 1,
-  vhSpacingStep = 0.25,
-
+  maxVwDenominator = 4,
+  maxVhDenominator = 4,
   maxPercentageDenominator = 16,
   maxPercentageNumerator = 16,
   maxAspectRatioDenominator = 20,
@@ -114,8 +111,7 @@ module.exports = ({
         if (unit && includeUnitInKey && value !== 0) {
           key += unit;
         }
-        value *= multiplyValueBy;
-        value /= divideValueBy;
+        value = value * multiplyValueBy / divideValueBy;
         if (unit === 'grid' || unit === 'px') {
           if (unit === 'grid') {
             value *= gridResolution;
@@ -137,17 +133,30 @@ module.exports = ({
     return range(start, end, step, { unit: 'grid' });
   };
 
-  const rangeArray = (start, end, { step = 1 } = {}) => _.range(start, end + 1, step);
-
-  const fractions = (maxDenominator, maxNumerator) => {
+  const fractions = (maxDenominator, maxNumerator = 1, {
+    unit = null,
+    includeUnitInKey = false,
+    multiplyValueBy = 1,
+    divideValueBy = 1,
+    keywords = {},
+  } = {}) => {
     const fractions = {};
     for (let denominator = 1; denominator <= Math.max(maxDenominator, maxNumerator); denominator ++) {
       for (let numerator = 1; numerator <= Math.max(maxDenominator, maxNumerator); numerator ++) {
-        if (numerator === denominator || (numerator < denominator && denominator > maxDenominator) || (numerator > denominator && numerator > maxNumerator)) {
+        if ((numerator < denominator && denominator > maxDenominator) || (numerator > denominator && numerator > maxNumerator)) {
           continue;
         }
         let key = `${numerator}/${denominator}`;
-        let value = numerator / denominator;
+        if (keywords.hasOwnProperty(key)) {
+          key = keywords[key];
+        }
+        else if (unit && includeUnitInKey) {
+          key += unit;
+        }
+        let value = numerator / denominator * multiplyValueBy / divideValueBy;
+        if (unit) {
+          value += unit;
+        }
         if (Object.values(fractions).includes(value)) {
           continue;
         }
@@ -165,8 +174,8 @@ module.exports = ({
   const gridSpacing = gridRange(0, maxGridSpacing);
   const pxSpacing = range(0, maxPxSpacing, pxSpacingStep, { unit: 'px', includeUnitInKey: true });
   const emSpacing = range(0, maxEmSpacing, emSpacingStep, { unit: 'em', includeUnitInKey: true });
-  const vwSpacing = range(0, maxVwSpacing, vwSpacingStep, { unit: 'vw', includeUnitInKey: true });
-  const vhSpacing = range(0, maxVhSpacing, vhSpacingStep, { unit: 'vh', includeUnitInKey: true });
+  const vwSpacing = fractions(maxVwDenominator, 1, { unit: 'vw', includeUnitInKey: true, multiplyValueBy: 100, keywords: { '1/1': '1vw' } });
+  const vhSpacing = fractions(maxVhDenominator, 1, { unit: 'vh', includeUnitInKey: true, multiplyValueBy: 100, keywords: { '1/1': '1vh' } });
 
   return {
     prefix,
@@ -195,8 +204,7 @@ module.exports = ({
       },
 
       percentages: {
-        'full': '100%',
-        ..._.mapValues(fractions(maxPercentageDenominator, maxPercentageNumerator), value => `${value * 100}%`),
+        ...fractions(maxPercentageDenominator, maxPercentageNumerator, { unit: '%', multiplyValueBy: 100, keywords: { '1/1': 'full' } }),
       },
 
       fontFamily: {
@@ -375,7 +383,7 @@ module.exports = ({
       },
 
       columnCount: [
-        ...rangeArray(1, maxColumnCount),
+        ...Object.values(range(1, maxColumnCount)),
       ],
 
       columnGap: {
@@ -390,7 +398,6 @@ module.exports = ({
       }),
 
       aspectRatio: {
-        '1/1': 1,
         ...fractions(maxAspectRatioDenominator, maxAspectRatioNumerator),
       },
 
@@ -401,8 +408,7 @@ module.exports = ({
       translate: (theme, { negative }) => ({
         '0': '0',
         ...andNegative(negative, {
-          'full': '100%',
-          ..._.mapValues(fractions(maxTranslateDenominator, maxTranslateNumerator), value => `${value * 100}%`),
+          ...fractions(maxTranslateDenominator, maxTranslateNumerator, { unit: '%', multiplyValueBy: 100, keywords: { '1/1': 'full' } }),
         }),
       }),
 
