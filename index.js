@@ -320,6 +320,8 @@ module.exports = ({
       inset: theme => ({
         '0': '0',
         'auto': 'auto',
+        'infinity': pxToRem(99999),
+        '-infinity': `-${pxToRem(99999)}`,
         ...theme('percentages'),
       }),
 

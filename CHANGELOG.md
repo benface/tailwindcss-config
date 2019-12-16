@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.3] - 2019-12-15
+
+### Added
+- Added `infinity` and `-infinity` insets (`99999px` and `-99999px`)
+
 ## [2.2.2] - 2019-11-29
 
 ### Added
@@ -315,7 +320,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.2...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.3...HEAD
+[2.2.3]: https://github.com/benface/tailwindcss-config/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/benface/tailwindcss-config/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/benface/tailwindcss-config/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/benface/tailwindcss-config/compare/v2.1.1...v2.2.0
