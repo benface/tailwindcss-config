@@ -17,6 +17,7 @@ const fluidContainerPlugin = require('tailwindcss-fluid-container');
 const trianglesPlugin = require('tailwindcss-triangles');
 const interactionVariantsPlugin = require('tailwindcss-interaction-variants');
 const childrenPlugin = require('tailwindcss-children');
+const altPlugin = require('tailwindcss-alt');
 
 module.exports = ({
   rootFontSize = 100,
@@ -669,6 +670,8 @@ module.exports = ({
       interactionVariantsPlugin(),
       
       childrenPlugin(),
+
+      altPlugin(),
 
       ...plugins,
     ],

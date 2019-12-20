@@ -16,6 +16,7 @@
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.15",
     "num2fraction": "^1.2.2",
+    "tailwindcss-alt": "^1.0.1",
     "tailwindcss-animations": "^1.0.0",
     "tailwindcss-aspect-ratio": "^2.0.0",
     "tailwindcss-blend-mode": "^1.0.0",
