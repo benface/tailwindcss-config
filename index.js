@@ -74,6 +74,8 @@ module.exports = ({
   minScale = -100,
   maxScale = 200,
   scaleStep = 5,
+  minRotate = -360,
+  maxRotate = 360,
   rotateStep = 45,
   enable3dTransforms = true,
   maxTransitionDuration = 2000,
@@ -420,7 +422,7 @@ module.exports = ({
       },
 
       rotate: {
-        ...range(0, 360 - rotateStep, rotateStep, { unit: 'deg' }),
+        ...range(minRotate, maxRotate, rotateStep, { unit: 'deg' }),
       },
 
       transitionProperty: {
