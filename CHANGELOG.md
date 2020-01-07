@@ -9,6 +9,7 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 ### Added
 - Added the `tailwindcss-background-extended` plugin
+- Added `fill` and `stroke` utilities for all the theme colors by default
 
 ## [2.2.5] - 2020-01-02
 

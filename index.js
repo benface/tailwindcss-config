@@ -244,6 +244,17 @@ module.exports = ({
         'default': '0',
       },
 
+      textIndent: {
+        ...gridRange(0, maxTextIndent, textIndentStep),
+        ...pxSpacing,
+        ...emSpacing,
+      },
+
+      textShadow: {
+        'none': 'none',
+        'default': `0 ${pxToRem(1)} ${pxToRem(3)} rgba(0, 0, 0, 0.2)`,
+      },
+
       boxShadow: {
         'none': 'none',
         'default': `0 ${pxToRem(1)} ${pxToRem(3)} 0 rgba(0, 0, 0, 0.1), 0 ${pxToRem(1)} ${pxToRem(2)} 0 rgba(0, 0, 0, 0.06)`,
@@ -265,6 +276,17 @@ module.exports = ({
         'default': pxToRem(4),
         'full': pxToRem(99999),
       },
+
+      backgroundSize: {
+        'auto': 'auto',
+        'cover': 'cover',
+        'contain': 'contain',
+        'fill': '100% 100%',
+      },
+
+      fill: theme => theme('colors'),
+
+      stroke: theme => theme('colors'),
 
       width: theme => ({
         'auto': 'auto',
@@ -357,13 +379,6 @@ module.exports = ({
         ...range(minZIndex, maxZIndex, zIndexStep),
       },
 
-      backgroundSize: {
-        'auto': 'auto',
-        'cover': 'cover',
-        'contain': 'contain',
-        'fill': '100% 100%',
-      },
-
       listStyleType: {
         'none': 'none',
         'disc': 'disc',
@@ -375,17 +390,6 @@ module.exports = ({
         'upper-roman': 'upper-roman',
         'lower-alpha': 'lower-alpha',
         'upper-alpha': 'upper-alpha',
-      },
-
-      textIndent: {
-        ...gridRange(0, maxTextIndent, textIndentStep),
-        ...pxSpacing,
-        ...emSpacing,
-      },
-
-      textShadow: {
-        'none': 'none',
-        'default': `0 ${pxToRem(1)} ${pxToRem(3)} rgba(0, 0, 0, 0.2)`,
       },
 
       columnCount: [
