@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.6] - 2020-01-07
+
+### Added
+- Added the `tailwindcss-background-extended` plugin
+
 ## [2.2.5] - 2020-01-02
 
 ### Added
@@ -330,7 +335,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.5...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.6...HEAD
+[2.2.6]: https://github.com/benface/tailwindcss-config/compare/v2.2.5...v2.2.6
 [2.2.5]: https://github.com/benface/tailwindcss-config/compare/v2.2.4...v2.2.5
 [2.2.4]: https://github.com/benface/tailwindcss-config/compare/v2.2.3...v2.2.4
 [2.2.3]: https://github.com/benface/tailwindcss-config/compare/v2.2.2...v2.2.3

@@ -7,6 +7,7 @@ const typographyPlugin = require('tailwindcss-typography');
 const multiColumnPlugin = require('tailwindcss-multi-column');
 const gapPlugin = require('tailwindcss-gap');
 const aspectRatioPlugin = require('tailwindcss-aspect-ratio');
+const backgroundExtendedPlugin = require('tailwindcss-background-extended');
 const gradientsPlugin = require('tailwindcss-gradients');
 const transformsPlugin = require('tailwindcss-transforms');
 const transitionsPlugin = require('tailwindcss-transitions');
@@ -591,6 +592,10 @@ module.exports = ({
 
       aspectRatio: ['responsive'],
 
+      backgroundImage: defaultVariants,
+      backgroundClip: defaultVariants,
+      backgroundOrigin: defaultVariants,
+
       linearGradients: ['responsive'],
 
       transitionProperty: defaultVariants,
@@ -650,6 +655,8 @@ module.exports = ({
       }),
 
       aspectRatioPlugin(),
+
+      backgroundExtendedPlugin(),
 
       gradientsPlugin(),
 
