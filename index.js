@@ -643,7 +643,7 @@ module.exports = ({
       function({ addBase }) {
         addBase({
           'html': {
-            fontSize: `calc(${rootFontSize / 16}rem)`,
+            fontSize: `${rootFontSize / 16 * 100}%`,
           },
         });
       },
