@@ -5,10 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.2.7] - 2020-02-03
 
 ### Changed
 - The root `font-size` is now declared in `%` instead of `rem`
+- Updated `tailwindcss-transitions` to `2.2.0`
 
 ## [2.2.6] - 2020-01-07
 
@@ -341,7 +342,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.6...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.7...HEAD
+[2.2.7]: https://github.com/benface/tailwindcss-config/compare/v2.2.6...v2.2.7
 [2.2.6]: https://github.com/benface/tailwindcss-config/compare/v2.2.5...v2.2.6
 [2.2.5]: https://github.com/benface/tailwindcss-config/compare/v2.2.4...v2.2.5
 [2.2.4]: https://github.com/benface/tailwindcss-config/compare/v2.2.3...v2.2.4
