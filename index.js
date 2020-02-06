@@ -4,16 +4,14 @@ const num2fraction = require('num2fraction');
 const defaultTheme = require('tailwindcss/defaultTheme');
 const resetPlugin = require('@benface/tailwindcss-reset');
 const typographyPlugin = require('tailwindcss-typography');
-const multiColumnPlugin = require('tailwindcss-multi-column');
 const gapPlugin = require('tailwindcss-gap');
-const aspectRatioPlugin = require('tailwindcss-aspect-ratio');
+const animationsPlugin = require('tailwindcss-animations');
 const backgroundExtendedPlugin = require('tailwindcss-background-extended');
 const gradientsPlugin = require('tailwindcss-gradients');
-const transformsPlugin = require('tailwindcss-transforms');
-const transitionsPlugin = require('tailwindcss-transitions');
-const animationsPlugin = require('tailwindcss-animations');
 const filtersPlugin = require('tailwindcss-filters');
 const blendModePlugin = require('tailwindcss-blend-mode');
+const aspectRatioPlugin = require('tailwindcss-aspect-ratio');
+const multiColumnPlugin = require('tailwindcss-multi-column');
 const fluidContainerPlugin = require('tailwindcss-fluid-container');
 const trianglesPlugin = require('tailwindcss-triangles');
 const interactionVariantsPlugin = require('tailwindcss-interaction-variants');
@@ -23,9 +21,9 @@ const altPlugin = require('tailwindcss-alt');
 module.exports = ({
   rootFontSize = 100,
 
-  gridResolution = 1,
+  gridResolution = 4,
   maxGridSpacing = 400,
-  maxPxSpacing = 0,
+  maxPxSpacing = 16,
   pxSpacingStep = 1,
   maxEmSpacing = 2,
   emSpacingStep = 0.25,
@@ -38,7 +36,11 @@ module.exports = ({
   maxTranslateDenominator = 4,
   maxTranslateNumerator = 4,
 
-  maxBorderWidth = 20,
+  maxLineHeight = 40,
+  lineHeightStep = 1,
+  maxTextIndent = 40,
+  textIndentStep = 1,
+  maxBorderWidth = 40,
   borderWidthStep = 1,
   maxWidth = 1280,
   widthStep = 5,
@@ -56,6 +58,9 @@ module.exports = ({
   paddingStep = 5,
   maxMargin = null,
   marginStep = 5,
+  maxGap = null,
+  gapStep = 5,
+  gapLegacy = false,
   maxFlexGrow = 12,
   maxFlexShrink = 12,
   maxOrder = 12,
@@ -63,22 +68,17 @@ module.exports = ({
   minZIndex = -10,
   maxZIndex = 100,
   zIndexStep = 10,
-
-  maxTextIndent = 40,
-  textIndentStep = 1,
-  maxColumnCount = 5,
-  maxColumnGap = 200,
-  columnGapStep = 5,
-  maxGap = null,
-  gapStep = 5,
-  gapLegacy = false,
   minScale = -100,
   maxScale = 200,
   scaleStep = 5,
   minRotate = -360,
   maxRotate = 360,
-  rotateStep = 45,
-  enable3dTransforms = true,
+  rotateStep = 5,
+  maxTranslate = 200,
+  translateStep = 5,
+  minSkew = -45,
+  maxSkew = 45,
+  skewStep = 5,
   maxTransitionDuration = 2000,
   transitionDurationStep = 50,
   maxTransitionDelay = 2000,
@@ -87,6 +87,9 @@ module.exports = ({
   animationDurationStep = 50,
   maxAnimationDelay = 2000,
   animationDelayStep = 250,
+  maxColumnCount = 5,
+  maxColumnGap = 200,
+  columnGapStep = 5,
   enableReset = true,
 
   defaultVariants = ['responsive', 'hover', 'group-hover', 'focus', 'group-focus', 'active', 'group-active'],
@@ -125,7 +128,7 @@ module.exports = ({
         else if (unit && (value !== 0 || ['s', 'ms'].includes(unit))) {
           value += unit;
         }
-        return [key, value];
+        return [key, value.toString()];
       })
     );
   };
@@ -164,7 +167,7 @@ module.exports = ({
         if (Object.values(fractions).includes(value)) {
           continue;
         }
-        fractions[key] = value;
+        fractions[key] = value.toString();
       }
     }
     return fractions;
@@ -238,6 +241,7 @@ module.exports = ({
       lineHeight: {
         'none': '1',
         'default': '1.5',
+        ...gridRange(1, maxLineHeight, lineHeightStep),
       },
 
       letterSpacing: {
@@ -248,6 +252,19 @@ module.exports = ({
         ...gridRange(0, maxTextIndent, textIndentStep),
         ...pxSpacing,
         ...emSpacing,
+      },
+
+      listStyleType: {
+        'none': 'none',
+        'disc': 'disc',
+        'circle': 'circle',
+        'square': 'square',
+        'decimal': 'decimal',
+        'decimal-leading-zero': 'decimal-leading-zero',
+        'lower-roman': 'lower-roman',
+        'upper-roman': 'upper-roman',
+        'lower-alpha': 'lower-alpha',
+        'upper-alpha': 'upper-alpha',
       },
 
       textShadow: {
@@ -288,6 +305,11 @@ module.exports = ({
 
       stroke: theme => theme('colors'),
 
+      strokeWidth: theme => ({
+        '1': pxToRem(1),
+        ...theme('borderWidth'),
+      }),
+
       width: theme => ({
         'auto': 'auto',
         ...theme('spacing'),
@@ -303,12 +325,14 @@ module.exports = ({
       }),
 
       minWidth: theme => ({
+        'auto': 'auto',
         ...theme('spacing'),
         ...gridRange(0, maxMinWidth, minWidthStep),
         ...theme('percentages'),
       }),
 
       minHeight: theme => ({
+        'auto': 'auto',
         ...theme('spacing'),
         ...gridRange(0, maxMinHeight, minHeightStep),
         ...theme('percentages'),
@@ -351,6 +375,11 @@ module.exports = ({
         ...theme('percentages'),
       }),
 
+      gap: theme => ({
+        ...theme('spacing'),
+        ...gridRange(0, maxGap, gapStep),
+      }),
+
       flexGrow: {
         '0': '0',
         'default': '1',
@@ -379,49 +408,6 @@ module.exports = ({
         ...range(minZIndex, maxZIndex, zIndexStep),
       },
 
-      listStyleType: {
-        'none': 'none',
-        'disc': 'disc',
-        'circle': 'circle',
-        'square': 'square',
-        'decimal': 'decimal',
-        'decimal-leading-zero': 'decimal-leading-zero',
-        'lower-roman': 'lower-roman',
-        'upper-roman': 'upper-roman',
-        'lower-alpha': 'lower-alpha',
-        'upper-alpha': 'upper-alpha',
-      },
-
-      columnCount: [
-        ...Object.values(range(1, maxColumnCount)),
-      ],
-
-      columnGap: {
-        ...gridRange(0, maxColumnGap, columnGapStep),
-        ...pxSpacing,
-        ...emSpacing,
-      },
-
-      gap: theme => ({
-        ...theme('spacing'),
-        ...gridRange(0, maxGap, gapStep),
-      }),
-
-      aspectRatio: {
-        ...fractions(maxAspectRatioDenominator, maxAspectRatioNumerator),
-      },
-
-      linearGradients: theme => ({
-        colors: theme('colors'),
-      }),
-
-      translate: (theme, { negative }) => ({
-        '0': '0',
-        ...andNegative(negative, {
-          ...fractions(maxTranslateDenominator, maxTranslateNumerator, { unit: '%', multiplyValueBy: 100, keywords: { '1/1': 'full' } }),
-        }),
-      }),
-
       scale: {
         ...range(minScale, maxScale, scaleStep, { divideValueBy: 100 }),
       },
@@ -429,6 +415,20 @@ module.exports = ({
       rotate: {
         ...range(minRotate, maxRotate, rotateStep, { unit: 'deg' }),
       },
+
+      translate: (theme, { negative }) => ({
+        '0': '0',
+        ...andNegative(negative, {
+          ...gridRange(0, maxTranslate, translateStep),
+          ...fractions(maxTranslateDenominator, maxTranslateNumerator, { unit: '%', multiplyValueBy: 100, keywords: { '1/1': 'full' } }),
+        }),
+      }),
+
+      skew: {
+        ...range(minSkew, maxSkew, skewStep, { unit: 'deg' }),
+      },
+
+      // TODO: Add missing transform utilities in custom plugin
 
       transitionProperty: {
         'none': 'none',
@@ -450,16 +450,23 @@ module.exports = ({
       },
 
       transitionDuration: {
-        'default': `250ms`,
+        '25': '25ms',
+        '50': '50ms',
+        '75': '75ms',
         ...range(0, maxTransitionDuration, transitionDurationStep, { unit: 'ms' }),
       },
 
+      // TODO: Replace by a custom plugin
+      /*
       transitionDelay: {
         ...range(0, maxTransitionDelay, transitionDelayStep, { unit: 'ms' }),
       },
+      */
+
+      // TODO: Add missing will-change utilities in custom plugin
 
       animationDuration: {
-        'default': `1000ms`,
+        'default': '1000ms',
         ...range(0, maxAnimationDuration, animationDurationStep, { unit: 'ms' }),
       },
 
@@ -473,6 +480,24 @@ module.exports = ({
         'forwards': 'forwards',
         'backwards': 'backwards',
         'both': 'both',
+      },
+
+      linearGradients: theme => ({
+        colors: theme('colors'),
+      }),
+
+      aspectRatio: {
+        ...fractions(maxAspectRatioDenominator, maxAspectRatioNumerator),
+      },
+
+      columnCount: [
+        ...Object.values(range(1, maxColumnCount)),
+      ],
+
+      columnGap: {
+        ...gridRange(0, maxColumnGap, columnGapStep),
+        ...pxSpacing,
+        ...emSpacing,
       },
 
       triangles: {
@@ -508,43 +533,45 @@ module.exports = ({
     },
 
     variants: deepmerge({
-      accessibility: ['responsive'],
-      alignContent: defaultVariants,
-      alignItems: defaultVariants,
-      alignSelf: defaultVariants,
+      accessibility: defaultVariants,
+      alignContent: ['responsive'],
+      alignItems: ['responsive'],
+      alignSelf: ['responsive'],
       appearance: defaultVariants,
       backgroundAttachment: defaultVariants,
       backgroundColor: defaultVariants,
       backgroundPosition: defaultVariants,
       backgroundRepeat: defaultVariants,
       backgroundSize: defaultVariants,
-      borderCollapse: defaultVariants,
+      borderCollapse: ['responsive'],
       borderColor: defaultVariants,
       borderRadius: defaultVariants,
       borderStyle: defaultVariants,
       borderWidth: defaultVariants,
       boxShadow: defaultVariants,
-      cursor: defaultVariants,
+      boxSizing: ['responsive'],
+      cursor: ['responsive'],
       display: defaultVariants,
       fill: defaultVariants,
       flex: defaultVariants,
-      flexDirection: defaultVariants,
-      flexGrow: defaultVariants,
-      flexShrink: defaultVariants,
-      flexWrap: defaultVariants,
-      float: defaultVariants,
+      flexDirection: ['responsive'],
+      flexGrow: ['responsive'],
+      flexShrink: ['responsive'],
+      flexWrap: ['responsive'],
+      float: ['responsive'],
+      clear: ['responsive'],
       fontFamily: defaultVariants,
       fontSize: defaultVariants,
-      fontSmoothing: defaultVariants,
+      fontSmoothing: ['responsive'],
       fontStyle: defaultVariants,
       fontWeight: defaultVariants,
       height: ['responsive'],
       inset: ['responsive'],
-      justifyContent: defaultVariants,
+      justifyContent: ['responsive'],
       letterSpacing: defaultVariants,
       lineHeight: defaultVariants,
-      listStylePosition: defaultVariants,
-      listStyleType: defaultVariants,
+      listStylePosition: ['responsive'],
+      listStyleType: ['responsive'],
       margin: ['responsive'],
       maxHeight: ['responsive'],
       maxWidth: ['responsive'],
@@ -553,36 +580,87 @@ module.exports = ({
       objectFit: defaultVariants,
       objectPosition: defaultVariants,
       opacity: defaultVariants,
-      order: defaultVariants,
+      order: ['responsive'],
       outline: defaultVariants,
       overflow: defaultVariants,
       padding: ['responsive'],
       placeholderColor: defaultVariants,
-      pointerEvents: defaultVariants,
-      position: defaultVariants,
-      resize: defaultVariants,
+      pointerEvents: ['responsive'],
+      position: ['responsive'],
+      resize: ['responsive'],
       stroke: defaultVariants,
-      tableLayout: defaultVariants,
+      strokeWidth: defaultVariants,
+      tableLayout: ['responsive'],
       textAlign: defaultVariants,
       textColor: defaultVariants,
       textDecoration: defaultVariants,
       textTransform: defaultVariants,
-      userSelect: defaultVariants,
-      verticalAlign: defaultVariants,
+      userSelect: ['responsive'],
+      verticalAlign: ['responsive'],
       visibility: defaultVariants,
-      whitespace: defaultVariants,
+      whitespace: ['responsive'],
       width: ['responsive'],
-      wordBreak: defaultVariants,
+      wordBreak: ['responsive'],
       zIndex: defaultVariants,
+      gap: ['responsive'],
+      gridAutoFlow: ['responsive'],
+      gridTemplateColumns: ['responsive'],
+      gridColumn: ['responsive'],
+      gridColumnStart: ['responsive'],
+      gridColumnEnd: ['responsive'],
+      gridTemplateRows: ['responsive'],
+      gridRow: ['responsive'],
+      gridRowStart: ['responsive'],
+      gridRowEnd: ['responsive'],
+      transform: ['responsive'],
+      transformOrigin: ['responsive'],
+      scale: defaultVariants,
+      rotate: defaultVariants,
+      translate: defaultVariants,
+      skew: defaultVariants,
+      transitionProperty: ['responsive'],
+      transitionTimingFunction: ['responsive'],
+      transitionDuration: ['responsive'],
 
       textIndent: ['responsive'],
       textShadow: defaultVariants,
-      ellipsis: defaultVariants,
-      hyphens: defaultVariants,
-      textUnset: defaultVariants,
-      caps: defaultVariants,
-      nums: defaultVariants,
-      ligatures: defaultVariants,
+      ellipsis: ['responsive'],
+      hyphens: ['responsive'],
+      kerning: ['responsive'],
+      textUnset: ['responsive'],
+      fontVariantCaps: ['responsive'],
+      fontVariantNumeric: ['responsive'],
+      fontVariantLigatures: ['responsive'],
+      textRendering: ['responsive'],
+
+      animations: defaultVariants,
+      animationTimingFunction: ['responsive'],
+      animationDuration: ['responsive'],
+      animationDelay: ['responsive'],
+      animationIterationCount: ['responsive'],
+      animationDirection: ['responsive'],
+      animationFillMode: ['responsive'],
+      animationPlayState: defaultVariants,
+
+      backgroundImage: defaultVariants,
+      backgroundClip: defaultVariants,
+      backgroundOrigin: defaultVariants,
+
+      linearGradients: ['responsive'],
+      radialGradients: ['responsive'],
+      conicGradients: ['responsive'],
+      repeatingLinearGradients: ['responsive'],
+      repeatingRadialGradients: ['responsive'],
+      repeatingConicGradients: ['responsive'],
+
+      filter: defaultVariants,
+      backdropFilter: defaultVariants,
+
+      mixBlendMode: defaultVariants,
+      backgroundBlendMode: defaultVariants,
+      isolation: ['responsive'],
+
+      aspectRatio: ['responsive'],
 
       columnCount: ['responsive'],
       columnGap: ['responsive'],
@@ -593,42 +671,7 @@ module.exports = ({
       columnFill: ['responsive'],
       columnSpan: ['responsive'],
 
-      gap: ['responsive'],
-
-      aspectRatio: ['responsive'],
-
-      backgroundImage: defaultVariants,
-      backgroundClip: defaultVariants,
-      backgroundOrigin: defaultVariants,
-
-      linearGradients: ['responsive'],
-
-      transitionProperty: defaultVariants,
-      transitionDuration: defaultVariants,
-      transitionTimingFunction: defaultVariants,
-      transitionDelay: defaultVariants,
-      willChange: defaultVariants,
-
-      transform: defaultVariants,
-      transformOrigin: defaultVariants,
-      translate: defaultVariants,
-      scale: defaultVariants,
-      rotate: defaultVariants,
-      skew: defaultVariants,
-      perspective: defaultVariants,
-      perspectiveOrigin: defaultVariants,
-      transformStyle: defaultVariants,
-      backfaceVisibility: defaultVariants,
-      transformBox: defaultVariants,
-
-      filter: defaultVariants,
-      backdropFilter: defaultVariants,
-
-      mixBlendMode: defaultVariants,
-      backgroundBlendMode: defaultVariants,
-      isolation: defaultVariants,
-
-      fluidContainer: defaultVariants,
+      fluidContainer: ['responsive'],
 
       triangles: defaultVariants,
 
@@ -649,43 +692,37 @@ module.exports = ({
         });
       },
 
-      ...(enableReset ? [resetPlugin()] : []),
+      ...(enableReset ? [resetPlugin] : []),
 
-      typographyPlugin(),
-
-      multiColumnPlugin(),
+      typographyPlugin,
 
       gapPlugin({
         legacy: gapLegacy,
       }),
 
-      aspectRatioPlugin(),
+      animationsPlugin,
 
       backgroundExtendedPlugin(),
 
-      gradientsPlugin(),
+      gradientsPlugin,
 
-      transformsPlugin({
-        '3d': enable3dTransforms,
-      }),
-
-      transitionsPlugin(),
-
-      animationsPlugin(),
-
-      filtersPlugin(),
+      filtersPlugin,
 
       blendModePlugin(),
 
-      fluidContainerPlugin(),
+      aspectRatioPlugin(),
 
-      trianglesPlugin(),
+      multiColumnPlugin(),
 
-      interactionVariantsPlugin(),
+      fluidContainerPlugin,
+
+      trianglesPlugin,
+
+      interactionVariantsPlugin,
       
-      childrenPlugin(),
+      childrenPlugin,
 
-      altPlugin(),
+      altPlugin,
 
       ...plugins,
     ],

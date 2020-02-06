@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0-beta.1] - 2020-02-06
+
+### Added
+- Added `maxLineHeight` and `lineHeightStep` options that default to `40` and `1` respectively
+- Added `maxTranslate` and `translateStep` options that default to `200` and `5` respectively
+- Added `minSkew`, `maxSkew`, and `skewStep` options that default to `-45`, `45`, and `5` respectively
+- Added `min-w-auto` and `min-h-auto` utilities
+
+### Changed
+- Changed the default value of `gridResolution` from `1` to `4`
+- Changed the default value of `maxPxSpacing` from `0` to `16`
+- Changed the default value of `maxBorderWidth` from `20` to `40`
+- Changed the default value of `rotateStep` from `45` to `5`
+- Updated plugins to their latest version
+
+### Removed
+- Removed the deprecated `tailwindcss-transforms` and `tailwindcss-transitions` plugins, since Tailwind 1.2 comes with transform and transition utilities
+- Removed the `enable3dTransforms` option, and as a result 3D transform utilities are no longer generated
+
 ## [2.2.7] - 2020-02-03
 
 ### Changed
@@ -342,7 +361,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v2.2.7...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v3.0.0-beta.1...HEAD
+[3.0.0-beta.1]: https://github.com/benface/tailwindcss-config/compare/v2.2.7...v3.0.0-beta.1
 [2.2.7]: https://github.com/benface/tailwindcss-config/compare/v2.2.6...v2.2.7
 [2.2.6]: https://github.com/benface/tailwindcss-config/compare/v2.2.5...v2.2.6
 [2.2.5]: https://github.com/benface/tailwindcss-config/compare/v2.2.4...v2.2.5
