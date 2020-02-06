@@ -433,8 +433,8 @@ module.exports = ({
       transitionProperty: {
         'none': 'none',
         'all': 'all',
-        'default': ['background-color', 'border-color', 'color', 'fill', 'stroke', 'opacity', 'box-shadow', 'transform'],
-        'colors': ['background-color', 'border-color', 'color', 'fill', 'stroke'],
+        'default': 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+        'colors': 'background-color, border-color, color, fill, stroke',
         'bg': 'background-color',
         'border': 'border-color',
         'color': 'color',
@@ -446,7 +446,7 @@ module.exports = ({
         'height': 'height',
         'padding': 'padding',
         'border-width': 'border-width',
-        'box': ['margin', 'width', 'height', 'padding', 'border-width'],
+        'box': 'margin, width, height, padding, border-width',
       },
 
       transitionDuration: {

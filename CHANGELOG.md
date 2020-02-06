@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0-beta.2] - 2020-02-06
+
+### Fixed
+- Fixed the transition property utilities with more than one CSS property
+
 ## [3.0.0-beta.1] - 2020-02-06
 
 ### Added
@@ -361,7 +366,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v3.0.0-beta.1...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v3.0.0-beta.2...HEAD
+[3.0.0-beta.2]: https://github.com/benface/tailwindcss-config/compare/v3.0.0-beta.1...v3.0.0-beta.2
 [3.0.0-beta.1]: https://github.com/benface/tailwindcss-config/compare/v2.2.7...v3.0.0-beta.1
 [2.2.7]: https://github.com/benface/tailwindcss-config/compare/v2.2.6...v2.2.7
 [2.2.6]: https://github.com/benface/tailwindcss-config/compare/v2.2.5...v2.2.6
