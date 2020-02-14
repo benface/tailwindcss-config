@@ -428,8 +428,6 @@ module.exports = ({
         ...range(minSkew, maxSkew, skewStep, { unit: 'deg' }),
       },
 
-      // TODO: Add missing transform utilities in custom plugin
-
       transitionProperty: {
         'none': 'none',
         'all': 'all',
@@ -456,14 +454,9 @@ module.exports = ({
         ...range(0, maxTransitionDuration, transitionDurationStep, { unit: 'ms' }),
       },
 
-      // TODO: Replace by a custom plugin
-      /*
       transitionDelay: {
         ...range(0, maxTransitionDelay, transitionDelayStep, { unit: 'ms' }),
       },
-      */
-
-      // TODO: Add missing will-change utilities in custom plugin
 
       animationDuration: {
         'default': '1000ms',
@@ -621,6 +614,8 @@ module.exports = ({
       transitionProperty: ['responsive'],
       transitionTimingFunction: ['responsive'],
       transitionDuration: ['responsive'],
+      transitionDelay: ['responsive'],
+      willChange: ['responsive'],
 
       textIndent: ['responsive'],
       textShadow: defaultVariants,
@@ -710,7 +705,7 @@ module.exports = ({
 
       blendModePlugin(),
 
-      aspectRatioPlugin(),
+      aspectRatioPlugin,
 
       multiColumnPlugin(),
 
@@ -723,6 +718,61 @@ module.exports = ({
       childrenPlugin,
 
       altPlugin,
+
+      function({ addUtilities, theme, variants, e }) {
+        addUtilities({
+          '.transform-flat': {
+            transformStyle: 'flat',
+          },
+          '.transform-preserve-3d': {
+            transformStyle: 'preserve-3d',
+          },
+          '.backface-visible': {
+            backfaceVisibility: 'visible',
+          },
+          '.backface-hidden': {
+            backfaceVisibility: 'hidden',
+          },
+          '.transform-border': {
+            transformBox: 'border-box',
+          },
+          '.transform-fill': {
+            transformBox: 'fill-box',
+          },
+          '.transform-view': {
+            transformBox: 'view-box',
+          },
+        }, variants('transform'));
+
+        addUtilities(_.fromPairs(
+          _.map(theme('transitionDelay'), (value, modifier) => {
+            return [
+              `.${e(`delay-${modifier}`)}`,
+              {
+                transitionDelay: value,
+              },
+            ];
+          })
+        ), variants('transitionDelay'));
+
+        addUtilities({
+          '.will-change-auto': {
+            willChange: 'auto',
+          },
+          '.will-change-scroll': {
+            willChange: 'scroll-position',
+          },
+          '.will-change-contents': {
+            willChange: 'contents',
+          },
+          '.will-change-opacity': {
+            willChange: 'opacity',
+          },
+          '.will-change-transform': {
+            willChange: 'transform',
+          },
+        }, variants('willChange'));
+      },
 
       ...plugins,
     ],

@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0-beta.3] - 2020-02-14
+
+### Added
+- Re-added the `transform-style`, `backface-visibility`, `transform-box`, `transition-delay`, and `will-change` utilities which were temporarily removed in beta 1
+
+### Changed
+- Updated plugins to their latest version
+
 ## [3.0.0-beta.2] - 2020-02-06
 
 ### Fixed
@@ -28,6 +36,7 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 ### Removed
 - Removed the deprecated `tailwindcss-transforms` and `tailwindcss-transitions` plugins, since Tailwind 1.2 comes with transform and transition utilities
 - Removed the `enable3dTransforms` option, and as a result 3D transform utilities are no longer generated
+- Temporarily removed `transform-style`, `backface-visibility`, `transform-box`, `transition-delay`, and `will-change` utilities
 
 ## [2.2.7] - 2020-02-03
 
@@ -366,7 +375,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v3.0.0-beta.2...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v3.0.0-beta.3...HEAD
+[3.0.0-beta.3]: https://github.com/benface/tailwindcss-config/compare/v3.0.0-beta.2...v3.0.0-beta.3
 [3.0.0-beta.2]: https://github.com/benface/tailwindcss-config/compare/v3.0.0-beta.1...v3.0.0-beta.2
 [3.0.0-beta.1]: https://github.com/benface/tailwindcss-config/compare/v2.2.7...v3.0.0-beta.1
 [2.2.7]: https://github.com/benface/tailwindcss-config/compare/v2.2.6...v2.2.7
