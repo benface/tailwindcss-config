@@ -475,9 +475,7 @@ module.exports = ({
         'both': 'both',
       },
 
-      linearGradients: theme => ({
-        colors: theme('colors'),
-      }),
+      linearGradientColors: theme => theme('colors'),
 
       aspectRatio: {
         ...fractions(maxAspectRatioDenominator, maxAspectRatioNumerator),

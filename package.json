@@ -24,16 +24,16 @@
     "tailwindcss-children": "^2.0.0",
     "tailwindcss-filters": "^3.0.0",
     "tailwindcss-fluid-container": "^3.1.1",
-    "tailwindcss-gap": "^5.0.0",
+    "tailwindcss-gap": "^5.0.2",
     "tailwindcss-gradients": "^3.0.0",
-    "tailwindcss-interaction-variants": "^3.1.0",
+    "tailwindcss-interaction-variants": "^3.1.1",
     "tailwindcss-multi-column": "^1.0.2",
     "tailwindcss-triangles": "^3.0.0",
     "tailwindcss-typography": "^3.0.1"
   },
   "devDependencies": {
     "github-release-from-changelog": "^2.1.1",
-    "release-it": "^12.5.0",
+    "release-it": "^13.5.2",
     "tailwindcss": "^1.2.0"
   }
 }
