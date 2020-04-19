@@ -24,7 +24,7 @@
     "tailwindcss-children": "^2.0.0",
     "tailwindcss-filters": "^3.0.0",
     "tailwindcss-fluid-container": "^3.1.1",
-    "tailwindcss-gap": "^5.0.2",
+    "tailwindcss-gap": "^6.0.0",
     "tailwindcss-gradients": "^3.0.0",
     "tailwindcss-interaction-variants": "^3.1.1",
     "tailwindcss-multi-column": "^1.0.2",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "github-release-from-changelog": "^2.1.1",
-    "release-it": "^13.5.2",
+    "release-it": "^13.5.4",
     "tailwindcss": "^1.2.0"
   }
 }
