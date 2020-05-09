@@ -93,7 +93,9 @@ module.exports = ({
   enableReset = true,
 
   defaultVariants = ['responsive', 'hover', 'group-hover', 'focus', 'group-focus', 'active', 'group-active'],
-  
+
+  purge = null,
+  target = 'relaxed',
   prefix = '',
   important = '#a',
   separator = ':',
@@ -184,7 +186,22 @@ module.exports = ({
   const vwSpacing = fractions(maxVwDenominator, 1, { unit: 'vw', includeUnitInKey: true, multiplyValueBy: 100, keywords: { '1/1': '1vw' } });
   const vhSpacing = fractions(maxVhDenominator, 1, { unit: 'vh', includeUnitInKey: true, multiplyValueBy: 100, keywords: { '1/1': '1vh' } });
 
+  if (purge === null || Array.isArray(purge)) {
+    purge = {
+      mode: 'all',
+      content: purge !== null ? purge : [
+        './templates/**/*.html',
+        './templates/**/*.twig',
+        './src/**/*.js',
+        './src/**/*.jsx',
+        './src/**/*.vue',
+      ],
+    };
+  }
+
   return {
+    purge,
+    target,
     prefix,
     important,
     separator,
@@ -531,11 +548,13 @@ module.exports = ({
       appearance: defaultVariants,
       backgroundAttachment: defaultVariants,
       backgroundColor: defaultVariants,
+      backgroundOpacity: defaultVariants,
       backgroundPosition: defaultVariants,
       backgroundRepeat: defaultVariants,
       backgroundSize: defaultVariants,
       borderCollapse: ['responsive'],
       borderColor: defaultVariants,
+      borderOpacity: defaultVariants,
       borderRadius: defaultVariants,
       borderStyle: defaultVariants,
       borderWidth: defaultVariants,
@@ -543,6 +562,9 @@ module.exports = ({
       boxSizing: ['responsive'],
       cursor: ['responsive'],
       display: defaultVariants,
+      divideColor: [],
+      divideOpacity: [],
+      divideWidth: [],
       fill: defaultVariants,
       flex: defaultVariants,
       flexDirection: ['responsive'],
@@ -576,14 +598,17 @@ module.exports = ({
       overflow: defaultVariants,
       padding: ['responsive'],
       placeholderColor: defaultVariants,
+      placeholderOpacity: defaultVariants,
       pointerEvents: ['responsive'],
       position: ['responsive'],
       resize: ['responsive'],
+      space: [],
       stroke: defaultVariants,
       strokeWidth: defaultVariants,
       tableLayout: ['responsive'],
       textAlign: defaultVariants,
       textColor: defaultVariants,
+      textOpacity: defaultVariants,
       textDecoration: defaultVariants,
       textTransform: defaultVariants,
       userSelect: ['responsive'],
@@ -613,6 +638,7 @@ module.exports = ({
       transitionTimingFunction: ['responsive'],
       transitionDuration: ['responsive'],
       transitionDelay: ['responsive'],
+
       willChange: ['responsive'],
 
       textIndent: ['responsive'],
@@ -673,6 +699,10 @@ module.exports = ({
 
     corePlugins: {
       container: false,
+      divideColor: false,
+      divideOpacity: false,
+      divideWidth: false,
+      space: false,
       ...corePlugins,
     },
 
@@ -741,17 +771,6 @@ module.exports = ({
             transformBox: 'view-box',
           },
         }, variants('transform'));
-
-        addUtilities(_.fromPairs(
-          _.map(theme('transitionDelay'), (value, modifier) => {
-            return [
-              `.${e(`delay-${modifier}`)}`,
-              {
-                transitionDelay: value,
-              },
-            ];
-          })
-        ), variants('transitionDelay'));
 
         addUtilities({
           '.will-change-auto': {

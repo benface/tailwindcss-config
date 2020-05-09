@@ -8,7 +8,7 @@
   "bugs": "https://github.com/benface/tailwindcss-config/issues",
   "homepage": "https://github.com/benface/tailwindcss-config",
   "scripts": {
-    "test": "./node_modules/.bin/tailwind build ./test.css -c ./test.js -o dist/test.css",
+    "test": "./node_modules/.bin/tailwind build ./test.css -c ./test.js -o ./dist/test.css",
     "release": "f(){ release-it $1 && github-release-from-changelog ;};f"
   },
   "dependencies": {
@@ -26,14 +26,14 @@
     "tailwindcss-fluid-container": "^3.1.1",
     "tailwindcss-gap": "^6.0.0",
     "tailwindcss-gradients": "^3.0.0",
-    "tailwindcss-interaction-variants": "^3.1.1",
+    "tailwindcss-interaction-variants": "^4.0.0",
     "tailwindcss-multi-column": "^1.0.2",
     "tailwindcss-triangles": "^3.0.0",
     "tailwindcss-typography": "^3.0.1"
   },
   "devDependencies": {
     "github-release-from-changelog": "^2.1.1",
-    "release-it": "^13.5.4",
-    "tailwindcss": "^1.2.0"
+    "release-it": "^13.5.8",
+    "tailwindcss": "^1.4.6"
   }
 }
