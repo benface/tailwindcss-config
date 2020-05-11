@@ -5,9 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [3.2.0] - 2020-05-10
 
 ### Added
+- The `rootFontSize` option now accepts an object with a `default` key and breakpoint-specific root font sizes, useful to enlarge UI elements on large screens
 - Added a `content` utility
 
 ### Changed
@@ -409,7 +410,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v3.2.0...HEAD
+[3.2.0]: https://github.com/benface/tailwindcss-config/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/benface/tailwindcss-config/compare/v3.0.2...v3.1.0
 [3.0.2]: https://github.com/benface/tailwindcss-config/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/benface/tailwindcss-config/compare/v3.0.0...v3.0.1

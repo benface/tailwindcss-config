@@ -106,6 +106,12 @@ module.exports = ({
   corePlugins = {},
   plugins = [],
 } = {}) => {
+  let responsiveRootFontSizes = {};
+
+  if (_.isPlainObject(rootFontSize)) {
+    ({ default: rootFontSize, ...responsiveRootFontSizes } = rootFontSize);
+  }
+
   const pxToRem = valueInPx => (valueInPx / rootFontSize) + (valueInPx !== 0 ? 'rem' : '');
 
   const range = (start, end, step = 1, {
@@ -707,11 +713,21 @@ module.exports = ({
     },
 
     plugins: [
-      function({ addBase }) {
+      function({ addBase, theme }) {
         addBase({
           'html': {
             fontSize: `${rootFontSize / 16 * 100}%`,
           },
+        });
+        _.forEach(responsiveRootFontSizes, (responsiveRootFontSize, screen) => {
+          const mediaQuery = theme(`screens.${screen}`) ? `@screen ${screen}` : `@media (min-width: ${screen})`;
+          addBase({
+            [mediaQuery]: {
+              'html': {
+                fontSize: `${responsiveRootFontSize / 16 * 100}%`,
+              },
+            },
+          });
         });
       },
 
