@@ -749,6 +749,12 @@ module.exports = ({
 
       function({ addUtilities, theme, variants, e }) {
         addUtilities({
+          '.content': {
+            content: '""',
+          },
+        });
+
+        addUtilities({
           '.transform-flat': {
             transformStyle: 'flat',
           },

@@ -7,6 +7,9 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 ## [Unreleased]
 
+### Added
+- Added a `content` utility
+
 ### Changed
 - Updated `tailwindcss-fluid-container` to `4.0.0`
 - Updated `tailwindcss-alt` to `3.0.0`
