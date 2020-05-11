@@ -19,7 +19,7 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 ## [3.1.0] - 2020-05-09
 
-## Added
+### Added
 - Support for Tailwind 1.3 and 1.4 features
   - Added `purgecss` and `target` options
   - Set the variants for the new color opacity utilities
