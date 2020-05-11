@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- Updated `tailwindcss-fluid-container` to `4.0.0`
+- Updated `tailwindcss-alt` to `3.0.0`
+- Updated `tailwindcss-typography` to `3.1.0`
+- Updated `tailwindcss-children` to `2.1.0`
+
 ## [3.1.0] - 2020-05-09
 
 ## Added
