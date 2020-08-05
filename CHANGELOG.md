@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project mostly adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2020-08-04
+
+### Added
+- Support for Tailwind 1.5 and 1.6
+
+### Changed
+- Updated dependencies
+- Lock the Tailwind dependencies to specific versions to prevent any change to the generated CSS for the life of a given version of `tailwindcss-config`
+
+### Removed
+- Removed the `tailwindcss-animations` plugin along with the `defaultAnimationDuration`, `maxAnimationDuration`, `animationDurationStep`, `maxAnimationDelay`, and `animationDelayStep` options, since animation utilities are built into Tailwind 1.6
+- Removed the `gapLegacy` option since `tailwindcss-gap` now reads Tailwind’s `target` option (set it to `ie11` to have the same output as the old `gapLegacy: true`)
+
 ## [3.2.0] - 2020-05-10
 
 ### Added
@@ -410,7 +423,8 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 
 Initial release
 
-[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v3.2.0...HEAD
+[Unreleased]: https://github.com/benface/tailwindcss-config/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/benface/tailwindcss-config/compare/v3.2.0...v4.0.0
 [3.2.0]: https://github.com/benface/tailwindcss-config/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/benface/tailwindcss-config/compare/v3.0.2...v3.1.0
 [3.0.2]: https://github.com/benface/tailwindcss-config/compare/v3.0.1...v3.0.2

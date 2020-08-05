@@ -5,7 +5,6 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const resetPlugin = require('@benface/tailwindcss-reset');
 const typographyPlugin = require('tailwindcss-typography');
 const gapPlugin = require('tailwindcss-gap');
-const animationsPlugin = require('tailwindcss-animations');
 const backgroundExtendedPlugin = require('tailwindcss-background-extended');
 const gradientsPlugin = require('tailwindcss-gradients');
 const filtersPlugin = require('tailwindcss-filters');
@@ -60,7 +59,6 @@ module.exports = ({
   marginStep = 5,
   maxGap = null,
   gapStep = 5,
-  gapLegacy = false,
   maxFlexGrow = 12,
   maxFlexShrink = 12,
   maxOrder = 12,
@@ -83,10 +81,6 @@ module.exports = ({
   transitionDurationStep = 50,
   maxTransitionDelay = 2000,
   transitionDelayStep = 250,
-  maxAnimationDuration = 5000,
-  animationDurationStep = 50,
-  maxAnimationDelay = 2000,
-  animationDelayStep = 250,
   maxColumnCount = 5,
   maxColumnGap = 200,
   columnGapStep = 5,
@@ -239,6 +233,7 @@ module.exports = ({
 
       fontFamily: {
         'default': [
+          'system-ui',
           '-apple-system',
           'BlinkMacSystemFont',
           '"Segoe UI"',
@@ -254,8 +249,7 @@ module.exports = ({
         ],
       },
 
-      fontWeight: {
-      },
+      fontWeight: {},
 
       fontSize: {
         'default': pxToRem(16),
@@ -481,22 +475,9 @@ module.exports = ({
         ...range(0, maxTransitionDelay, transitionDelayStep, { unit: 'ms' }),
       },
 
-      animationDuration: {
-        'default': '1000ms',
-        ...range(0, maxAnimationDuration, animationDurationStep, { unit: 'ms' }),
-      },
+      animation: {},
 
-      animationDelay: {
-        ...range(0, maxAnimationDelay, animationDelayStep, { unit: 'ms' }),
-      },
-
-      animationFillMode: {
-        'default': 'both',
-        'none': 'none',
-        'forwards': 'forwards',
-        'backwards': 'backwards',
-        'both': 'both',
-      },
+      keyframes: {},
 
       linearGradientColors: theme => theme('colors'),
 
@@ -566,6 +547,7 @@ module.exports = ({
       borderWidth: defaultVariants,
       boxShadow: defaultVariants,
       boxSizing: ['responsive'],
+      container: [],
       cursor: ['responsive'],
       display: defaultVariants,
       divideColor: [],
@@ -602,6 +584,7 @@ module.exports = ({
       order: ['responsive'],
       outline: defaultVariants,
       overflow: defaultVariants,
+      overscrollBehavior: ['responsive'],
       padding: ['responsive'],
       placeholderColor: defaultVariants,
       placeholderOpacity: defaultVariants,
@@ -644,6 +627,7 @@ module.exports = ({
       transitionTimingFunction: ['responsive'],
       transitionDuration: ['responsive'],
       transitionDelay: ['responsive'],
+      animation: defaultVariants,
 
       willChange: ['responsive'],
 
@@ -657,15 +641,6 @@ module.exports = ({
       fontVariantNumeric: ['responsive'],
       fontVariantLigatures: ['responsive'],
       textRendering: ['responsive'],
-
-      animations: defaultVariants,
-      animationTimingFunction: ['responsive'],
-      animationDuration: ['responsive'],
-      animationDelay: ['responsive'],
-      animationIterationCount: ['responsive'],
-      animationDirection: ['responsive'],
-      animationFillMode: ['responsive'],
-      animationPlayState: defaultVariants,
 
       backgroundImage: defaultVariants,
       backgroundClip: defaultVariants,
@@ -735,11 +710,7 @@ module.exports = ({
 
       typographyPlugin,
 
-      gapPlugin({
-        legacy: gapLegacy,
-      }),
-
-      animationsPlugin,
+      gapPlugin,
 
       backgroundExtendedPlugin(),
 
