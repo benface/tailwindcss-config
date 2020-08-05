@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const deepmerge = require('deepmerge');
 const num2fraction = require('num2fraction');
-const defaultTheme = require('tailwindcss/defaultTheme');
 const resetPlugin = require('@benface/tailwindcss-reset');
 const typographyPlugin = require('tailwindcss-typography');
 const gapPlugin = require('tailwindcss-gap');
@@ -209,7 +208,10 @@ module.exports = ({
     theme: {
       screens: {
         'xs': '420px',
-        ...defaultTheme.screens,
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
       },
 
       colors: {
