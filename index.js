@@ -301,7 +301,7 @@ module.exports = ({
       },
 
       borderColor: theme => ({
-        'default': 'currentColor',
+        'default': 'transparent',
         ...theme('colors'),
       }),
 

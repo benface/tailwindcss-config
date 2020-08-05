@@ -11,6 +11,7 @@ and this project mostly adheres to [Semantic Versioning](https://semver.org/spec
 - Support for Tailwind 1.5 and 1.6
 
 ### Changed
+- Changed the `default` `borderColor` from `currentColor` to `transparent`
 - Updated dependencies
 - Lock the Tailwind dependencies to specific versions to prevent any change to the generated CSS for the life of a given version of `tailwindcss-config`
 
